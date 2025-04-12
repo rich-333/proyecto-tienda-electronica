@@ -1,49 +1,60 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - tienda_electronica</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/tienda_electronica.styles.css" asp-append-version="true" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/css/_LayoutStyles.css"/>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">tienda_electronica</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <h1>Hyper Mega Red</h1>
+        <nav>
+            <a>Inicio</a>
+            <a>Contacto</a>
+            <a>Acerca de nosotros</a>
+            <a>Registrarse</a>
         </nav>
+        <input type="text" placeholder="Que estas buscando?"/>
+        <img src="~/img/nav/lupa.png" alt="Imagen de una lupa como buscador"/>
+        <a>
+            <img src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
+        </a>
+        <a>
+            <img src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
+        </a>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div>
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - tienda_electronica - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        <h1>Hyper Mega Red</h1>
+        <p>
+            Somos la mejor plataforma de venta de productos electronicos de Bolivia. Confia en nosotros 
+            para sus pedidos y compras en linea de los ultimos productos electronicos.
+        </p>
+
+        <span>Soporte</span>
+        <p>Cochabamba-Bolivia Zona Chimba, Av. Ingavi calle Heredia nro 4467</p>
+        <span>hypermegaredsoporte@gmail.com</span>
+        <span>+591 77912729</span>
+
+        <span>Contactanos</span>
+        <a> 
+            <img src="~/img/footer/facebook.png" alt="Icono de facebook de la tienda electronica"/> 
+        </a>
+        <a>
+            <img src="~/img/footer/instagram.png" alt="Icono de instagram de la tienda electronica"/>
+        </a>
+        <a>
+            <img src="~/img/footer/gorjeo.png" alt="Icono de twiter de la tienda electronica"/>
+        </a>
+
+        <p>Copyright 2025. All right reserved</p>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
