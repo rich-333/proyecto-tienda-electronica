@@ -17,14 +17,19 @@
             <a class="nav__link">Acerca de nosotros</a>
             <a class="nav__link">Registrarse</a>
         </nav>
+        <div class="input__container">
+            <input class="input__search" type="text" placeholder="Que estas buscando?" />
+            <img aria-hidden="true" class="input__lens" src="~/img/nav/lupa.png" />
+        </div>
         <div>
-            <input class="header__search" type="text" placeholder="Que estas buscando?" />
-            <img class="header__lens" src="~/img/nav/lupa.png" alt="Imagen de una lupa como buscador" />
             <a>
-                <img class="header__favorite" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
+                <img class="header__icon" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
             </a>
             <a>
-                <img class="header__cart" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
+                <img class="header__icon" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
+            </a>
+            <a>
+                <img class="header__icon" src="~/img/nav/usuario.png" alt="Imagen de un perfil para revisar el perfil del usuario"/>
             </a>
         </div>
     </header>
@@ -36,36 +41,41 @@
     <footer class="footer">
 
         <div class="footer__container">
-            <div class="footer__store">
-                <h1 class="logo">Hyper Mega Red</h1>
-                <p>
+            <div class="footer__field">
+                <h1 class="logo title__footer">Hyper Mega Red</h1>
+                <p class="store__information footer__elements--spacing">
                     Somos la mejor plataforma de venta de productos electronicos de Bolivia. Confia en nosotros
                     para sus pedidos y compras en linea de los ultimos productos electronicos.
                 </p>
             </div>
 
-            <div class="footer__support">
-                <span>Soporte</span>
-                <p>Cochabamba-Bolivia Zona Chimba, Av. Ingavi calle Heredia nro 4467</p>
-                <span>hypermegaredsoporte@gmail.com</span>
-                <span>+591 77912729</span>
+            <div class="footer__field">
+                <h2 class="subtitle__footer">Soporte</h2>
+                <p class="store__information footer__elements--spacing">Cochabamba-Bolivia Zona Chimba Av. Ingavi calle Heredia nro 4467</p>
             </div>
 
-            <div class="footer__contacts">
-                <span>Contactanos</span>
-                <a>
-                    <img src="~/img/footer/facebook.png" alt="Icono de facebook de la tienda electronica" />
-                </a>
-                <a>
-                    <img src="~/img/footer/instagram.png" alt="Icono de instagram de la tienda electronica" />
-                </a>
-                <a>
-                    <img src="~/img/footer/gorjeo.png" alt="Icono de twiter de la tienda electronica" />
-                </a>
+            <div class="footer__field">
+                <h2 class="subtitle__footer"r>Contactanos</h2>
+                <span class="footer__elements--spacing">hypermegaredsoporte@gmail.com</span>
+                <span class="footer__elements--spacing">+591 77912729</span>
+                <div class="footer__elements--spacing">
+                    <a>
+                        <img class="footer__socialmedia" src="~/img/footer/icons8-facebook-24.png" alt="Icono de facebook de la tienda electronica" />
+                    </a>
+                    <a>
+                        <img class="footer__socialmedia" src="~/img/footer/icons8-instagram-24.png" alt="Icono de instagram de la tienda electronica" />
+                    </a>
+                    <a>
+                        <img class="footer__socialmedia" src="~/img/footer/icons8-twitter-24.png" alt="Icono de twiter de la tienda electronica" />
+                    </a>
+                    <a>
+                        <img class="footer__socialmedia" src="~/img/footer/icons8-linkedin-24.png" alt="Icono de linkedin de la tienda electronica" />
+                    </a>
+                </div>
             </div>
         </div>
 
-        <p>Copyright 2025. All right reserved</p>
+        <span class="footer__copyright">Copyright 2025. All right reserved</span>
     </footer>
 </body>
 </html>

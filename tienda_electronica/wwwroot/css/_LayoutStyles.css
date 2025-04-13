@@ -1,8 +1,130 @@
-﻿*, *::before, *::after {
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+:root {
+    --font-family: "Roboto", sans-serif;
+    --font-logo: "Bungee Spice", sans-serif;
+    
+    --font-size-large: 35px;
+    --font-size-small: 18px;
+
+    --font-color-footer: #fff;
+}
+
+*, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
 body {
+    font-family: var(--font-family);
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px 90px 10px;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+}
+
+.logo {
+    font-family: var(--font-logo);
+    font-size: var(--font-size-large);
+    text-shadow: 2px 2px 1px black;
+}
+
+.nav__link {
+    margin: 0 15px;
+    font-weight: 400;
+    font-size: var(--font-size-small);
+}
+
+.input__container {
+    position: relative;
+    width: 200px;
+    margin-left: 100px;
+}
+
+.input__search {
+    padding: 9px 17px;
+    border: none;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.input__lens {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.header__icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin: 0 10px
+}
+
+/* footer */
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-around;
+    /*margin-bottom: 40px;*/
+    padding: 45px 90px;
+}
+
+.footer__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.title__footer {
+    margin-bottom: 5px;
+}
+
+.subtitle__footer {
+    margin-bottom: 17px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.store__information {
+    line-height: 22px;
+}
+
+.footer__elements--spacing {
+    margin-bottom: 15px;
+}
+
+.footer__socialmedia {
+    width: 20px;
+    height: 20px;
+    margin: 0 15px;
+    object-fit: contain;
+}
+
+
+.footer__copyright {
+    display: flex;
+    justify-content: center;
+    color: #787878;
+    padding-bottom: 10px;
 }
