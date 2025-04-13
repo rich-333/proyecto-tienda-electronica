@@ -9,50 +9,61 @@
     <link rel="stylesheet" href="~/css/_LayoutStyles.css"/>
 </head>
 <body>
-    <header>
-        <h1>Hyper Mega Red</h1>
-        <nav>
-            <a>Inicio</a>
-            <a>Contacto</a>
-            <a>Acerca de nosotros</a>
-            <a>Registrarse</a>
+    <header class="header">
+        <h1 class="logo">Hyper Mega Red</h1>
+        <nav class="nav">
+            <a class="nav__link">Inicio</a>
+            <a class="nav__link">Contacto</a>
+            <a class="nav__link">Acerca de nosotros</a>
+            <a class="nav__link">Registrarse</a>
         </nav>
-        <input type="text" placeholder="Que estas buscando?"/>
-        <img src="~/img/nav/lupa.png" alt="Imagen de una lupa como buscador"/>
-        <a>
-            <img src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
-        </a>
-        <a>
-            <img src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
-        </a>
+        <div>
+            <input class="header__search" type="text" placeholder="Que estas buscando?" />
+            <img class="header__lens" src="~/img/nav/lupa.png" alt="Imagen de una lupa como buscador" />
+            <a>
+                <img class="header__favorite" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
+            </a>
+            <a>
+                <img class="header__cart" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
+            </a>
+        </div>
     </header>
 
     <div>
         @RenderBody()
     </div>
 
-    <footer>
-        <h1>Hyper Mega Red</h1>
-        <p>
-            Somos la mejor plataforma de venta de productos electronicos de Bolivia. Confia en nosotros 
-            para sus pedidos y compras en linea de los ultimos productos electronicos.
-        </p>
+    <footer class="footer">
 
-        <span>Soporte</span>
-        <p>Cochabamba-Bolivia Zona Chimba, Av. Ingavi calle Heredia nro 4467</p>
-        <span>hypermegaredsoporte@gmail.com</span>
-        <span>+591 77912729</span>
+        <div class="footer__container">
+            <div class="footer__store">
+                <h1 class="logo">Hyper Mega Red</h1>
+                <p>
+                    Somos la mejor plataforma de venta de productos electronicos de Bolivia. Confia en nosotros
+                    para sus pedidos y compras en linea de los ultimos productos electronicos.
+                </p>
+            </div>
 
-        <span>Contactanos</span>
-        <a> 
-            <img src="~/img/footer/facebook.png" alt="Icono de facebook de la tienda electronica"/> 
-        </a>
-        <a>
-            <img src="~/img/footer/instagram.png" alt="Icono de instagram de la tienda electronica"/>
-        </a>
-        <a>
-            <img src="~/img/footer/gorjeo.png" alt="Icono de twiter de la tienda electronica"/>
-        </a>
+            <div class="footer__support">
+                <span>Soporte</span>
+                <p>Cochabamba-Bolivia Zona Chimba, Av. Ingavi calle Heredia nro 4467</p>
+                <span>hypermegaredsoporte@gmail.com</span>
+                <span>+591 77912729</span>
+            </div>
+
+            <div class="footer__contacts">
+                <span>Contactanos</span>
+                <a>
+                    <img src="~/img/footer/facebook.png" alt="Icono de facebook de la tienda electronica" />
+                </a>
+                <a>
+                    <img src="~/img/footer/instagram.png" alt="Icono de instagram de la tienda electronica" />
+                </a>
+                <a>
+                    <img src="~/img/footer/gorjeo.png" alt="Icono de twiter de la tienda electronica" />
+                </a>
+            </div>
+        </div>
 
         <p>Copyright 2025. All right reserved</p>
     </footer>
