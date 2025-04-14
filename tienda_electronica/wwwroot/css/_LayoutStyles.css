@@ -87,7 +87,6 @@ body {
 .footer__container {
     display: flex;
     justify-content: space-around;
-    /*margin-bottom: 40px;*/
     padding: 45px 90px;
 }
 
