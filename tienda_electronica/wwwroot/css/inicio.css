@@ -1,3 +1,41 @@
 ﻿.content {
-    padding: 0 90px;
+    padding: 30px 90px;
+}
+
+.promotions__container {
+    height: auto;
+    overflow: hidden;
+}
+
+.promotions__container ul {
+    display: flex;
+    padding: 0;
+    animation: slide 20s infinite alternate ease-in-out;
+}
+
+.promotions__container li {
+    list-style: none;
+    position: relative;
+}
+
+.promotions__apple {
+    width: 1332px;
+}
+
+.promotions__samsung {
+    height: 472px;
+    width: 1332px;
+    object-fit: cover;
+}
+
+
+@keyframes slide {
+    0% { margin-left: 0; }
+    30% { margin-left: 0; }
+
+    35% { margin-left: -100%; }
+    65% { margin-left: -100%; }
+
+    75% { margin-left: 0; }
+    100% { margin-left: 0; }
 }
