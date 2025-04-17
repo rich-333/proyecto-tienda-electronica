@@ -226,6 +226,53 @@
     width: 100%;
 }
 
-/* Servicios empresa */
+/* Beneficios empresa */
 
+.benefits__container {
+    margin: 100px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.benefits__content {
+    max-width: 320px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.benefits__img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.benefits__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.benefits__img--background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #999999;
+}
+
+.benefits__title {
+    font-size: 17px;
+    font-weight: 700;
+    display: block;
+    margin: 23px 0 8px;
+}
+
+.benefits__info {
+    line-height: 25px;
+}
 
