@@ -5,3 +5,35 @@
 @section Estilos {
     <link href="~/css/productos.css" rel="stylesheet" />
 }
+
+<main class="products">
+    <div class="container__title">
+        <h1 class="products__title">Productos</h1>
+    </div>
+    <div class="container__category">
+        <details class="dropdown">
+            <summary>Categoria</summary>
+            <ul>
+                <li><a href="#">Mandos</a></li>
+                <li><a href="#">Laptops</a></li>
+            </ul>
+        </details>
+    </div>
+    <div class="container__catalog">
+        <article class="product__container">
+            <div class="img__container">
+                <img class="img__product" src="~/img/home/productos/mando.jpg" />
+                <button class="button__favorite">
+                    <img class="icon__product" src="~/img/nav/favorito.png" />
+                </button>
+                <a href="#" class="button__eye">
+                    <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
+                </a>
+            </div>
+            <header class="product__header">
+                <h3 class="product__name">Mando</h3>
+                <span>220 Bs.</span>
+            </header>
+        </article>
+    </div>
+</main>
