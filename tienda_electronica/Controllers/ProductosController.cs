@@ -8,5 +8,12 @@ namespace tienda_electronica.Controllers
         {
             return View();
         }
+        public IActionResult Detalle(int id)
+        {
+            // Aquí podrías traer el producto desde una base de datos
+            // Por ahora solo pasamos el ID a la vista como ejemplo
+            ViewBag.ProductoId = id;
+            return View();
+        }
     }
 }
