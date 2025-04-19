@@ -5,7 +5,6 @@
 .detail__content {
     height: 600px; 
     display: flex;
-    background-color: #4cff00;
 }
 
 .img__column {
@@ -28,10 +27,149 @@
     overflow: hidden;
 }
 
+.detail__info {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin-left: 52px;
+    padding: 5px;
+}
 
+.name__product {
+    font-size: 20px;
+}
 
+.stock__product {
+    margin: 10px 0;
+    color: #5aea3e;
+}
+
+.price__product {
+    font-size: 20px;
+    font-weight: 400; 
+}
+
+.description__product {
+    margin: 20px 0;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.detail__button {
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.counter {
+    display: flex;
+    border: 2px solid #888888;
+    border-radius: 5px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.counter__btn {
+    background-color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.counter__btn--disaggregate:hover {
+    background-color: #c8c8c8;
+    color: #fff;
+}
+
+.counter__value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-left: 2px solid #888888;
+    border-right: 2px solid #888888;
+}
+
+.counter__btn--add {
+    background-color: #e74c3c;
+    color: #fff;
+    transition: 0.2s ease;
+}
+
+.counter__btn--add:hover {
+    background-color: #f38276;
+    color: #000;
+}
+
+.buy__btn {
+    padding: 10.5px 25px;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    background-color: #e74c3c;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.buy__btn:hover {
+    background-color: #f38276;
+}
+
+.favorite__btn {
+    padding: 10.5px;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease
+}
+
+.favorite__btn:hover {
+    background-color: #c8c8c8;
+}
 
 .img__favorite {
     width: 20px;
     height: 20px;
+}
+
+.detail__service {
+    border: 1px solid #888888;
+    border-radius: 5px;
+}
+
+.service {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    border: 1px solid #888888;
+    align-items: center;
+}
+
+.title__service {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.service__info {
+    font-size: 14px;
+}
+
+.service__link {
+    color: #000;
+}
+
+.service__img {
+    width: 40px;
+    height: 40px;
 }
