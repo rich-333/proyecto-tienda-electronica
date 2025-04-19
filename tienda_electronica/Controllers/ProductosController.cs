@@ -15,5 +15,9 @@ namespace tienda_electronica.Controllers
             ViewBag.ProductoId = id;
             return View();
         }
+        public IActionResult Gestion()
+        {
+            return View();
+        }
     }
 }
