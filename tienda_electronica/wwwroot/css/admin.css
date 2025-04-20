@@ -1,2 +1,143 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
+:root {
+    --font-family: "Roboto", sans-serif;
+    --font-logo: "Bungee Spice", sans-serif;
+    --font-size-large: 22px;
+    --font-size-small: 18px;
+    --font-weight-sections: 600;
+    --font-background-color-menu: #e6d4ff;
+    /*#f9ceff*/
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-sections);
+    padding: 10px;
+}
+
+.menu {
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 10px;
+    align-items: start;
+    justify-content: space-between;
+    margin: 0 10px 0 0;
+}
+
+.menu__container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--font-background-color-menu);
+    width: 100%;
+    max-width: 350px;
+    min-height: 97vh;
+    border-radius: 1rem;
+    padding: 30px;
+}
+
+.menu__logo {
+    margin: 0 0 25px 0;
+}
+
+.menu__name {
+    font-family: var(--font-logo);
+    text-shadow: 2px 2px 1px black;
+    font-size: var(--font-size-large);
+}
+
+.nav__list {
+    list-style-type: none;
+    padding-left: 0;
+    letter-spacing: 2px;
+}
+
+.nav__item {
+    margin: 30px 0;
+}
+
+.nav__link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    transition: 0.2s;
+}
+
+.nav__link:hover {
+    color: #ffbd1b;
+}
+
+.menu__img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    margin: 0 20px 0 0;
+}
+
+.nav__text {
+    font-size: 0.9rem;
+}
+
+.menu__signout {
+    display: flex;
+    align-items: center;
+    margin: 340px 0 0 0;
+}
+
+.btn__signout {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-sections);
+    background-color: var(--font-background-color-menu);
+    border: none;
+    cursor: pointer;
+}
+
+.btn__signout:hover {
+    color: #ffbd1b;
+}
+
+.header {
+    margin-left: 270px;
+    position: relative;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--font-background-color-menu);
+    width: 100%;
+    max-width: none;
+    height: 80px;
+    border-radius: 1rem;
+    padding: 5px 25px;
+}
+
+.header__container--title {
+    width: 80px;
+}
+
+.header__container--welcome {
+    display: block;
+    width: 100px;
+}
+
+.main {
+    margin-left: 270px;
+    margin-top: 15px;
 }

@@ -14,7 +14,7 @@
 
             <div class="menu__logo">
                 <a>
-                    <span>Hyper Mega Red</span>
+                    <span class="menu__name">Hyper Mega Red</span>
                 </a>
             </div>
 
@@ -22,25 +22,25 @@
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="#" class="nav__link">
-                            <img src="~/img/layoutadmin/productos.png" />
-                            <span>Prodcutos</span>
+                            <img class="menu__img" src="~/img/layoutadmin/productos.png" />
+                            <span>Productos</span>
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="#" class="nav__link">
-                            <img src="~/img/layoutadmin/categorias.png" />
+                            <img class="menu__img" src="~/img/layoutadmin/categorias.png" />
                             <span>Categorias</span>
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="#" class="nav__link">
-                            <img src="~/img/layoutadmin/usuarios.png" />
+                            <img class="menu__img" src="~/img/layoutadmin/usuarios.png" />
                             <span>Usuarios</span>
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="#" class="nav__link">
-                            <img src="~/img/layoutadmin/ventas.png" />
+                            <img class="menu__img" src="~/img/layoutadmin/ventas.png" />
                             <span>Ventas</span>
                         </a>
                     </li>
@@ -48,8 +48,8 @@
             </nav>
 
             <div class="menu__signout">
-                <button type="submit">
-                    <img src="~/img/layoutadmin/logout.png" />
+                <button class="btn__signout" type="submit">
+                    <img class="menu__img" src="~/img/layoutadmin/logout.png" />
                     Cerrar Sesion
                 </button>
             </div>
@@ -60,14 +60,14 @@
         <div class="header__container">
 
             <div>
-                <span>Menu title</span>
-                <span>hello user</span>
+                <span class="header__container--title">Menu title</span>
+                <span class="header__container--welcome">hello user</span>
             </div>
 
         </div>
     </header>
 
-    <div>
+    <div class="main">
         @RenderBody()
     </div>
 </body>
