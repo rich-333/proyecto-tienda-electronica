@@ -8,7 +8,65 @@
     <link href="~/css/admin.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>admin</h1>
+
+    <div class="menu">
+        <div class="menu__container">
+
+            <div class="menu__logo">
+                <a>
+                    <span>Hyper Mega Red</span>
+                </a>
+            </div>
+
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <img src="~/img/layoutadmin/productos.png" />
+                            <span>Prodcutos</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <img src="~/img/layoutadmin/categorias.png" />
+                            <span>Categorias</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <img src="~/img/layoutadmin/usuarios.png" />
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <img src="~/img/layoutadmin/ventas.png" />
+                            <span>Ventas</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="menu__signout">
+                <button type="submit">
+                    <img src="~/img/layoutadmin/logout.png" />
+                    Cerrar Sesion
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <header class="header">
+        <div class="header__container">
+
+            <div>
+                <span>Menu title</span>
+                <span>hello user</span>
+            </div>
+
+        </div>
+    </header>
+
     <div>
         @RenderBody()
     </div>
