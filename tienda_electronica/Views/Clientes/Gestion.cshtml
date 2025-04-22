@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Gestion Clientes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Estilos {
+    <link href="~/css/gestionClientes.css" rel="stylesheet" />
+}
+
+<main>
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>Bryan</td>
+                <td>Quispe</td>
+                <td>bryan123@gmail.com</td>
+                <td>77912729</td>
+                <td>Av. Ingavi</td>
+                <td>
+                    <a class="link__edit btn">
+                        <img class="img__editar" src="~/img/gestion/editar.png" />
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn__delete">
+                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
+                    </button>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+</main>
