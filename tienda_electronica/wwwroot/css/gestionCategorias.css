@@ -33,7 +33,7 @@ tbody tr:hover {
     border-radius: 50%;
     transition: 0.3s ease;
     padding: 10px;
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
 }
