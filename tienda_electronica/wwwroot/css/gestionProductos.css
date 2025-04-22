@@ -5,6 +5,7 @@
 
 .table__header th {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
 }
 
 table thead th, table td {
@@ -28,6 +29,7 @@ tbody tr:hover {
 .img__producto {
     width: 90px;
     height: 90px;
+    border-radius: 5px;
 }
 
 .btn {

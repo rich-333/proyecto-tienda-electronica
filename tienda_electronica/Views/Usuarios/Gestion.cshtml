@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Gestion Usuarios";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Estilos {
+    <link href="~/css/gestionUsuarios.css" rel="stylesheet" />
+}
+
+<main>
+    <table>
+
+        <thead class="table__header">
+
+            <tr>
+
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Foto</th>
+                <th>Email</th>
+                <th>Contraseña</th>
+                <th>Rol</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>Juan Alberto</td>
+                <td>Garcia</td>
+                <td>
+                    <img src="~/img/gestion/cabeson.jpg" />
+                </td>
+                <td>juan@gmail.com</td>
+                <td>juanA123</td>
+                <td>Administrador</td>
+                <td>
+                    <button class="btn btn__edit">
+                        <img class="img__editar" src="~/img/gestion/editar.png" />
+                    </button>
+                </td>
+                <td>
+                    <a class="btn btn__delete">
+                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
+                    </a>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+</main>
