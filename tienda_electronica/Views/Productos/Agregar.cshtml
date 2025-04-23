@@ -7,37 +7,39 @@
     <link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
-<main>
-    <section>
-        <div>
-            <h2>INFORMACION GENERAL DEL PRODUCTO</h2>
-            <button>Publicado</button>
-            <button>No Publicado</button>
+<main class="form__product">
+    <section class="info__product">
+        <div class="title__state">
+            <h2 class="title">INFORMACION GENERAL DEL PRODUCTO</h2>
+            <div class="container__state">
+                <button class="btn__public">Publicado</button>
+                <button class="btn__nopublic">No Publicado</button>
+            </div>
         </div>
-        <div>
-            <label for="input_nombre_producto">Nombre del producto</label>
-            <input id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
+        <div class="container__name">
+            <label class="lbl" for="input_nombre_producto">Nombre del producto</label>
+            <input class="input__name" id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
         </div>
-        <div>
-            <label for="input_descripcion_producto">Descripcion del producto</label>
-            <input id="input_descripcion_producto" type="text" placeholder="" />
+        <div class="container__description">
+            <label class="lbl" for="input_descripcion_producto">Descripcion del producto</label>
+            <input class="input__description" id="input_descripcion_producto" type="text" placeholder="" />
         </div>
-        <div>
-            <label>Agregar imagenes adicionales</label>
-            <input type="file" />
+        <div class="additional__img">
+            <label class="lbl" for="additional__img">Agregar imagenes adicionales</label>
+            <input id="additional__img" class="input__additionalimg" type="file" />
         </div>
     </section>
-    <div>
+    <section class="imgprice__product">
         <input type="file" placeholder="Imagen principal"/>
-        <label for="input_precio_producto">Precio</label>
-        <input id="input_precio_producto" type="text" placeholder="0"/>
-        <label for="input_precio_descuento">Precio con descuento</label>
-        <input id="input_precio_descuento" type="text" placeholder="0"/>
-        <label for="input_stock_producto">Stock</label>
-        <input id="input_stock_producto" type="number" placeholder="0"/>
-    </div>
-    <div>
-        <button>Salir</button>
-        <button>Guardar</button>
+        <label class="lbl" for="input_precio_producto">Precio</label>
+        <input class="input__price" id="input_precio_producto" type="text" placeholder="0"/>
+        <label class="lbl" for="input_precio_descuento">Precio con descuento</label>
+        <input class="input__price" id="input_precio_descuento" type="text" placeholder="0"/>
+        <label class="lbl" for="input_stock_producto">Stock</label>
+        <input class="input__price" id="input_stock_producto" type="number" placeholder="0"/>
+    </section>
+    <div class="container__actions">
+        <button class="btn btn__exit">Salir</button>
+        <button class="btn btn__save">Guardar</button>
     </div>
 </main>

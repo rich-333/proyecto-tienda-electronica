@@ -1,2 +1,100 @@
-﻿body {
+﻿.form__product {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.info__product {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 15px 25px;
+    background-color: #f9f5ff;
+    border-radius: 1rem;
+}
+
+.title__state {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.container__state {
+    
+}
+
+.btn__public {
+    
+}
+
+.btn__nopublic {
+
+}
+
+.container__name {
+    width: 100%;
+}
+
+.lbl {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    display: block;
+}
+
+.input__name {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 70%;
+}
+
+.input__description {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.input__additionalimg {
+    width: 100%;
+}
+
+
+
+.imgprice__product {
+    display: flex;
+    width: 28%;
+    flex-direction: column;
+    background-color: #f9f5ff;
+    border-radius: 1rem;
+    padding: 15px 25px;
+}
+
+.input__price {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.container__actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn__exit {
+    background-color: #ff0000;
 }
