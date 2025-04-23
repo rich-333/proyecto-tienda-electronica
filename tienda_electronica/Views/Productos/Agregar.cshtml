@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Agregar Producto";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Estilos{
+    <link href="~/css/agregarProducto.css" rel="stylesheet" />
+}
+
+<main>
+    <section>
+        <div>
+            <h2>INFORMACION GENERAL DEL PRODUCTO</h2>
+            <button>Publicado</button>
+            <button>No Publicado</button>
+        </div>
+        <div>
+            <label for="input_nombre_producto">Nombre del producto</label>
+            <input id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
+        </div>
+        <div>
+            <label for="input_descripcion_producto">Descripcion del producto</label>
+            <input id="input_descripcion_producto" type="text" placeholder="" />
+        </div>
+        <div>
+            <label>Agregar imagenes adicionales</label>
+            <input type="file" />
+        </div>
+    </section>
+    <div>
+        <input type="file" placeholder="Imagen principal"/>
+        <label for="input_precio_producto">Precio</label>
+        <input id="input_precio_producto" type="text" placeholder="0"/>
+        <label for="input_precio_descuento">Precio con descuento</label>
+        <input id="input_precio_descuento" type="text" placeholder="0"/>
+        <label for="input_stock_producto">Stock</label>
+        <input id="input_stock_producto" type="number" placeholder="0"/>
+    </div>
+    <div>
+        <button>Salir</button>
+        <button>Guardar</button>
+    </div>
+</main>
