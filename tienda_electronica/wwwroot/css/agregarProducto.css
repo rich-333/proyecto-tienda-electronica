@@ -16,6 +16,7 @@
 .title__state {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .title {
@@ -32,8 +33,18 @@
     
 }
 
+.btn__public:hover {
+    background-color: #ed1515;
+    color: #fff;
+}
+
 .btn__nopublic {
 
+}
+
+.btn__nopublic:hover {
+    background-color: #ed1515;
+    color: #fff;
 }
 
 .container__name {
@@ -45,6 +56,7 @@
     font-weight: 500;
     padding: 10px 0;
     display: block;
+    letter-spacing: 1px;
 }
 
 .input__name {
@@ -90,11 +102,27 @@
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 5px;
     border: none;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
 .btn__exit {
-    background-color: #ff0000;
+    background-color: #ff2323;
+    color: #fff;
+}
+
+.btn__exit:hover {
+    background-color: #c80d0d;
+}
+
+.btn__save {
+    background-color: #00e624;
+    color: #fff;
+}
+
+.btn__save:hover {
+    background-color: #00b821;
 }
