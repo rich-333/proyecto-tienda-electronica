@@ -1,3 +1,5 @@
+using tienda_electronica.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +24,11 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Productos}/{action=Agregar}/{id?}");
+    pattern: "{controller=Productos}/{action=Gestion}/{id?}");
 
 app.Run();
+
+builder.Services.AddSingleton<Conexion>();
+
+builder.Services.AddTransient<ProductoData>();
+

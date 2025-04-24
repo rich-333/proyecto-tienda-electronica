@@ -1,9 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using tienda_electronica.Data;
+using tienda_electronica.Models;
 
 namespace tienda_electronica.Controllers
 {
     public class ProductosController : Controller
     {
+        private readonly ProductoData productoData;
+
+        public ProductosController(IConfiguration config)
+        {
+            productoData = new ProductoData(config);
+        }
         public IActionResult Index()
         {
             return View();
@@ -17,7 +25,14 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Gestion()
         {
-            return View();
+            var productos = productoData.ObtenerProductos();
+            return View(productos);
+        }
+
+        public IActionResult Eliminar(int id)
+        {
+            productoData.EliminarProducto(id);
+            return RedirectToAction("Gestion");
         }
 
         public ActionResult Agregar() 

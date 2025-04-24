@@ -1,10 +1,12 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Productos.Producto>
+
+@{
     ViewData["Title"] = "Gestión de Productos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos{
-    <link href="~/css/gestionProductos.css" rel="stylesheet" />
+<link href="~/css/gestionProductos.css" rel="stylesheet" />
 }
 
 <main>
@@ -26,34 +28,30 @@
         </thead>
 
         <tbody>
-
-            <tr>
-                <td>Mando inalámbrico Xbox</td>
-                <td>
-                    Disfruta del diseño modernizado del Mando inalámbrico Xbox, con superficies esculpidas y una geometría refinada para una mayor
-                    comodidad durante el juego. Toma el control con el agarre texturizado y la cruceta híbrida. Captura y comparte contenido sin
-                    problemas con un botón Compartir dedicado. Empareja rápidamente, juega y cambia entre dispositivos como Xbox Series X|S,
-                    Xbox One, PC Windows, Android e iOS.*
-                </td>
-                <td>300 Bs.</td>
-                <td>0</td>
-                <td>5</td>
-                <td>Activo</td>
-                <td>
-                    <img class="img__producto" src="~/img/home/productos/mando.jpg" />
-                </td>
-                <td>
-                    <button class="btn btn__edit">
-                        <img class="img__editar" src="~/img/gestion/editar.png" />
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn__delete">
-                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                    </button>
-                </td>
-            </tr>
-
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.descripcion</td>
+                    <td>@item.precio</td>
+                    <td>@item.precioDescuento</td>
+                    <td>@item.stock</td>
+                    <td>@item.estado</td>
+                    <td>
+                        <img class="img__producto" src="~/img/home/productos/mando.jpg" />
+                    </td>
+                    <td>
+                        <button class="btn btn__edit">
+                            <img class="img__editar" src="~/img/gestion/editar.png" />
+                        </button>
+                    </td>
+                    <td>
+                        <a asp-controller="Productos" asp-action="Eliminar" asp-route-id="@item.idProducto" onclick="return confirm('Estas seguro que desea eliminar este producto?')" class="btn btn__delete">
+                            <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
 
     </table>
