@@ -6,5 +6,15 @@
         public string apellido { get; set; }
         public string email { get; set; }
         private string contrasena { get; set; }
+
+        public void ActualizarDatosPersonales(string nombre, string correo, string apellido)
+        {
+
+        }
+
+        public void CambiarContraseña(string nuevaClave)
+        {
+
+        }
     }
 }

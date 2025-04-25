@@ -4,5 +4,10 @@
     {
         public string rutaFotoEmpleado { get; set; }
         public string rol { get; set; }
+
+        public void VerVentasRealizadas()
+        {
+
+        }
     }
 }

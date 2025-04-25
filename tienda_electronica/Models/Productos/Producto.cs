@@ -11,5 +11,10 @@
         public decimal precioDescuento { get; set; }
 
         public bool estado { get; set; }
+
+        public void MarcarComoInactivo()
+        {
+
+        }
     }
 }
