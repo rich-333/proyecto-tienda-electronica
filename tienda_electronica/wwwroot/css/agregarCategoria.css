@@ -1,8 +1,8 @@
-﻿.form__product {
+﻿.form__categoria {
     width: 100%;
 }
 
-.info__product {
+.info__categoria {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -15,10 +15,6 @@
     letter-spacing: 1.5px;
     font-size: 18px;
     font-weight: 600;
-}
-
-.container__name {
-    width: 100%;
 }
 
 .lbl {
@@ -34,12 +30,18 @@
     border-radius: 5px;
     border: none;
     width: 70%;
+    border: 2px solid #ddd;
+}
+
+.input__name:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    outline: none;
 }
 
 .input__description {
     padding: 10px;
     border-radius: 5px;
-    border: none;
     width: 100%;
     line-height: 1.5;
     transition: all 0.3s ease;

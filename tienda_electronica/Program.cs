@@ -24,7 +24,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Usuarios}/{action=Agregar}/{id?}");
+    pattern: "{controller=Categorias}/{action=Agregar}/{id?}");
 
 app.Run();
 
