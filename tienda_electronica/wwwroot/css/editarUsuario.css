@@ -1,8 +1,10 @@
-﻿.form__categoria {
+﻿.form__cliente {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
-.info__categoria {
+.info__cliente {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -25,35 +27,18 @@
     letter-spacing: 1px;
 }
 
-.input__name {
+.input {
     padding: 10px;
     border-radius: 5px;
-    width: 70%;
-    border: 2px solid #ddd;
-}
-
-.input__name:hover {
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-    outline: none;
-}
-
-.input__description {
-    padding: 10px;
-    border-radius: 5px;
+    border: none;
     width: 100%;
-    line-height: 1.5;
-    transition: all 0.3s ease;
-    resize: vertical;
-    min-height: 120px;
     border: 2px solid #ddd;
 }
 
-.input__description:hover {
+.input:hover {
     border-color: #4a90e2;
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
     outline: none;
-    background-color: #fff;
 }
 
 .container__actions {
@@ -68,6 +53,7 @@
     border: none;
     font-size: 16px;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .btn__exit {

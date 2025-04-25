@@ -1,2 +1,44 @@
 ﻿@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+@section Estilos {
+    <link href="~/css/editarUsuario.css" rel="stylesheet" />
+}
+
+<main class="form__cliente">
+    <section class="info__cliente">
+        <div>
+            <h2 class="title">INFORMACION GENERAL DE CLIENTES</h2>
+        </div>
+        <div>
+            <label class="lbl" for="nombre_cliente">Nombre del cliente</label>
+            <input class="input" id="nombre_cliente" type="text" placeholder="Alberto" />
+        </div>
+        <div>
+            <label class="lbl" for="apellido_cliente">Apellido del cliente</label>
+            <input class="input" id="apellido_cliente" type="text" placeholder="Garcia Cardozo" />
+        </div>
+        <div>
+            <label class="lbl" for="email_cliente">Email del cliente</label>
+            <input class="input" id="email_cliente" type="email" placeholder="Alberto@gmail.com" />
+        </div>
+        <div>
+            <label class="lbl" for="contra_cliente">Contraseña del cliente</label>
+            <input class="input" id="contra_cliente" type="password" placeholder="albertoGC051&" />
+        </div>
+        <div>
+            <label class="lbl" for="telefono_cliente">Telefono del cliente</label>
+            <input class="input" id="telefono_cliente" type="tel" placeholder="77912729" />
+        </div>
+        <div>
+            <label class="lbl" for="direccion_cliente">Direccion del cliente</label>
+            <input class="input" id="direccion_cliente" type="text" placeholder="Av. Ingavi" />
+        </div>
+    </section>
+    <div class="container__actions">
+        <button class="btn btn__exit">Salir</button>
+        <button class="btn btn__save">Guardar</button>
+    </div>
+</main>
