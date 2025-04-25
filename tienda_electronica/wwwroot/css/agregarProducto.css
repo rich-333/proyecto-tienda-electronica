@@ -66,6 +66,18 @@
     border-radius: 5px;
     border: none;
     width: 100%;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 80px;
+    border: 2px solid #ddd;
+}
+
+.input__description:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    outline: none;
+    background-color: #fff;
 }
 
 .additional__lbl {
