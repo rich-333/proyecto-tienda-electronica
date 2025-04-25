@@ -44,6 +44,21 @@ namespace tienda_electronica.Data
             return productos;
         }
 
+        public bool ProductoTienePedidos(int idProducto)
+        {
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+                var query = "SELECT COUNT(*) FROM detalle_pedido WHERE id_producto = @id";
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", idProducto);
+                    var count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
         public void EliminarProducto(int idProducto)
         {
             using (var connection = _conexion.ObtenerConexion())

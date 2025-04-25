@@ -31,8 +31,25 @@ namespace tienda_electronica.Controllers
 
         public IActionResult Eliminar(int id)
         {
-            productoData.EliminarProducto(id);
-            return RedirectToAction("Gestion");
+            try
+            {
+                if (productoData.ProductoTienePedidos(id))
+                {
+                    TempData["Error"] = "No se puede eliminar el producto porque está relacionado con pedidos.";
+                    return RedirectToAction("Gestion"); 
+                }
+                else
+                {
+                    productoData.EliminarProducto(id);
+                    TempData["MensajeEliminar"] = "Producto eliminado correctamente.";
+                    return RedirectToAction("Gestion");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Gestion");
+            }
         }
 
         public ActionResult Agregar() 

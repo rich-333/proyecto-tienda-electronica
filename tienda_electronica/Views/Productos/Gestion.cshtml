@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Gestión de Productos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData.Keep();
 }
 
 @section Estilos{
@@ -10,6 +11,20 @@
 }
 
 <main>
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeEliminar"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["MensajeEliminar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
     <table>
         <thead class="table__header">
 
