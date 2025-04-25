@@ -25,12 +25,19 @@
             <input class="input__description" id="input_descripcion_producto" type="text" placeholder="" />
         </div>
         <div class="additional__img">
-            <label class="lbl" for="additional__img">Agregar imagenes adicionales</label>
-            <input id="additional__img" class="input__additionalimg" type="file" />
+            <label class="additional__lbl" for="additional__img">
+                <span class="upload__span">Cargar imagenes adicionales (maximo 4)</span>
+                <input id="additional__img" class="upload__input" type="file" />
+            </label>
         </div>
     </section>
     <section class="imgprice__product">
-        <input type="file" placeholder="Imagen principal"/>
+        <div class="upload__container">
+            <label class="upload__lbl" for="image-upload">
+                <span class="upload__span">Cargar Imagen Principal</span>
+                <input class="upload__input" id="image-upload" type="file" accept="image/*" />
+            </label>
+        </div>
         <label class="lbl" for="input_precio_producto">Precio</label>
         <input class="input__price" id="input_precio_producto" type="text" placeholder="0"/>
         <label class="lbl" for="input_precio_descuento">Precio con descuento</label>

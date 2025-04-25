@@ -26,20 +26,15 @@
 }
 
 .container__state {
-    
-}
-
-.btn__public {
-    
+    display: inline-flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .btn__public:hover {
     background-color: #ed1515;
     color: #fff;
-}
-
-.btn__nopublic {
-
 }
 
 .btn__nopublic:hover {
@@ -73,8 +68,22 @@
     width: 100%;
 }
 
-.input__additionalimg {
+.additional__lbl {
+    margin-top: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
     width: 100%;
+    display: block;
+    text-align: center;
+    padding: 95px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.additional__lbl:hover {
+    border-color: #4CAF50;
+    background-color: #dcdcdc;
 }
 
 
@@ -86,6 +95,31 @@
     background-color: #f9f5ff;
     border-radius: 1rem;
     padding: 15px 25px;
+}
+
+.upload__lbl {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 90px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.upload__lbl:hover {
+    border-color: #4CAF50;
+    background-color: #dcdcdc;
+}
+
+.upload__span {
+    letter-spacing: 1px;
+}
+
+.upload__input {
+    display: none;
 }
 
 .input__price {
