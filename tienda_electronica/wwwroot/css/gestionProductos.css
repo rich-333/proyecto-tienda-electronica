@@ -1,6 +1,7 @@
 ﻿table {
     width: 100%;
     border-collapse: collapse;
+    background-color: #f9f5ff;
 }
 
 .table__header th {

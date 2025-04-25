@@ -8,5 +8,10 @@ namespace tienda_electronica.Controllers
         {
             return View();
         }
+
+        public IActionResult Agregar()
+        {
+            return View();
+        }
     }
 }
