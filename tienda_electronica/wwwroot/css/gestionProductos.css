@@ -1,7 +1,6 @@
 ﻿table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #f9f5ff;
 }
 
 .table__header th {
@@ -99,4 +98,26 @@ tbody tr:hover {
         opacity: 0;
         display: none;
     }
+}
+
+.header__management {
+    display: flex;
+    justify-content: end;
+}
+
+.add {
+    display: inline-block;
+    margin: 2px 0;
+    padding: 10px;
+    background-color: #0026ff;
+    border-radius: 5px;
+    color: #fff;
+    transition: 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.add:hover {
+    background-color: #0627cd;
 }

@@ -20,7 +20,12 @@ namespace tienda_electronica.Data
             using (var conn = _conexion.ObtenerConexion())
             {
                 conn.Open();
-                var query = "SELECT * FROM productos";
+                var query = @"SELECT p.*, 
+                                 (SELECT ruta_imagen 
+                                  FROM imagenes_producto 
+                                  WHERE id_producto = p.id_producto 
+                                  LIMIT 1) AS rutaImagen
+                              FROM productos p";
                 using (var cmd = new MySqlCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -36,6 +41,7 @@ namespace tienda_electronica.Data
                             stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
                             precioDescuento = reader["precio_descuento"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio_descuento"]),
                             estado = reader["activo"] == DBNull.Value ? false : Convert.ToBoolean(reader["activo"]),
+                            rutaImagen = reader["rutaImagen"].ToString()
                         });
                     }
                 }
