@@ -50,6 +50,15 @@ namespace tienda_electronica.Data
             return productos;
         }
 
+        public void AgregarProducto(Producto producto)
+        {
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+                
+            }
+        }
+
         public bool ProductoTienePedidos(int idProducto)
         {
             using (var connection = _conexion.ObtenerConexion())

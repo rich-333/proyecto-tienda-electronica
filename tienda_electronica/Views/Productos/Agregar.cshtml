@@ -4,7 +4,7 @@
 }
 
 @section Estilos{
-    <link href="~/css/agregarProducto.css" rel="stylesheet" />
+<link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
 <main class="form__product">
@@ -17,8 +17,19 @@
             </div>
         </div>
         <div class="container__name">
-            <label class="lbl" for="input_nombre_producto">Nombre del producto</label>
-            <input class="input__name" id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
+            <div>
+                <label class="lbl" for="input_nombre_producto">Nombre del producto</label>
+                <input class="input__name" id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
+            </div>
+            <div>
+                <label for="idCategoria">Categoria</label>
+                <select id="idCategoria" name="idCategoria" class="">
+                    @foreach (var categoria in ViewBag.Categorias)
+                    {
+                        <option value="@categoria.idCategoria">@categoria.nombre</option>
+                    }
+                </select>
+            </div>
         </div>
         <div class="container__description">
             <label class="lbl" for="input_descripcion_producto">Descripcion del producto</label>

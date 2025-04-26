@@ -43,7 +43,8 @@
 }
 
 .container__name {
-    width: 100%;
+    display: flex;
+    gap: 200px;
 }
 
 .lbl {
@@ -58,7 +59,7 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
-    width: 70%;
+    width: 200%;
 }
 
 .input__description {

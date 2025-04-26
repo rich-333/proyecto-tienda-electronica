@@ -7,10 +7,11 @@ namespace tienda_electronica.Controllers
     public class ProductosController : Controller
     {
         private readonly ProductoData productoData;
-
+        private readonly CategoriaData categoriaData;
         public ProductosController(IConfiguration config)
         {
             productoData = new ProductoData(config);
+            categoriaData = new CategoriaData(config);
         }
         public IActionResult Index()
         {
@@ -52,8 +53,10 @@ namespace tienda_electronica.Controllers
             }
         }
 
-        public ActionResult Agregar() 
+        public IActionResult Agregar() 
         {
+            var categorias = categoriaData.ObtenerCategorias();
+            ViewBag.Categorias = categorias;
             return View();
         }
     }
