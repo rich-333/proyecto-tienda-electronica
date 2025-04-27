@@ -50,13 +50,94 @@ namespace tienda_electronica.Data
             return productos;
         }
 
-        public void AgregarProducto(Producto producto)
+        private string GuardarImagen(IFormFile imagen)
         {
+            var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(imagen.FileName);
+            var ruta = Path.Combine("wwwroot", "img", "productos", nombreArchivo);
+
+            using (var stream = new FileStream(ruta, FileMode.Create))
+            {
+                imagen.CopyTo(stream);
+            }
+
+            return Path.Combine("/img/productos", nombreArchivo);
+        }
+
+        public int AgregarProducto(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
+        {
+            int idProductoNuevo = 0;
             using (var connection = _conexion.ObtenerConexion())
             {
                 connection.Open();
-                
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var queryProducto = @"INSERT INTO productos 
+                                      (id_categoria, nombre, descripcion, precio, stock, precio_descuento, activo)
+                                      VALUES (@idCategoria, @nombre, @descripcion, @precio, @stock, @precioDescuento, @estado);
+                                      SELECT LAST_INSERT_ID();";
+                        using (var cmdProducto = new MySqlCommand(queryProducto, connection, transaction))
+                        {
+                            cmdProducto.Parameters.AddWithValue("@idCategoria", producto.idCategoria);
+                            cmdProducto.Parameters.AddWithValue("@nombre", producto.nombre);
+                            cmdProducto.Parameters.AddWithValue("@descripcion", producto.descripcion);
+                            cmdProducto.Parameters.AddWithValue("@precio", producto.precio);
+                            cmdProducto.Parameters.AddWithValue("@stock", producto.stock);
+                            cmdProducto.Parameters.AddWithValue("@precioDescuento", producto.precioDescuento);
+                            cmdProducto.Parameters.AddWithValue("@estado", producto.estado);
+
+                            idProductoNuevo = Convert.ToInt32(cmdProducto.ExecuteScalar());
+                        }
+
+                        if (imagenPrincipal != null && imagenPrincipal.Length > 0)
+                        {
+                            var rutaImagenPrincipal = GuardarImagen(imagenPrincipal);
+
+                            var queryImagenPrincipal = @"INSERT INTO imagenes_producto (id_producto, ruta_imagen)
+                                                 VALUES (@idProducto, @rutaImagen);";
+
+                            using (var cmdImagen = new MySqlCommand(queryImagenPrincipal, connection, transaction))
+                            {
+                                cmdImagen.Parameters.AddWithValue("@idProducto", idProductoNuevo);
+                                cmdImagen.Parameters.AddWithValue("@rutaImagen", rutaImagenPrincipal);
+                                cmdImagen.ExecuteNonQuery();
+                            }
+                        }
+
+                        if (imagenesAdicionales != null && imagenesAdicionales.Count > 0)
+                        {
+                            foreach (var imagen in imagenesAdicionales.Take(4)) // Máximo 4
+                            {
+                                if (imagen != null && imagen.Length > 0)
+                                {
+                                    var rutaImagen = GuardarImagen(imagen);
+
+                                    var queryImagenAdicional = @"INSERT INTO imagenes_producto (id_producto, ruta_imagen)
+                                                         VALUES (@idProducto, @rutaImagen);";
+
+                                    using (var cmdImagenAdicional = new MySqlCommand(queryImagenAdicional, connection, transaction))
+                                    {
+                                        cmdImagenAdicional.Parameters.AddWithValue("@idProducto", idProductoNuevo);
+                                        cmdImagenAdicional.Parameters.AddWithValue("@rutaImagen", rutaImagen);
+                                        cmdImagenAdicional.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
+
+            return idProductoNuevo;
         }
 
         public bool ProductoTienePedidos(int idProducto)

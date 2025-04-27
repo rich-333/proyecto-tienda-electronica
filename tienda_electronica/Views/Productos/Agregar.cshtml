@@ -7,61 +7,99 @@
 <link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
-<main class="form__product">
-    <section class="info__product">
-        <div class="title__state">
-            <h2 class="title">INFORMACION GENERAL DEL PRODUCTO</h2>
-            <div class="container__state">
-                <button class="btn btn__public">Publicado</button>
-                <button class="btn btn__nopublic">No Publicado</button>
+<form asp-action="Agregar" asp-controller="Productos" method="post" enctype="multipart/form-data">
+    <main class="form__product">
+        @if (TempData["Error"] != null)
+        {
+            <div class="custom-alert show">
+                @TempData["Error"]
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>
-        </div>
-        <div class="container__name">
-            <div>
-                <label class="lbl" for="input_nombre_producto">Nombre del producto</label>
-                <input class="input__name" id="input_nombre_producto" type="text" placeholder="Laptop HP Victus 15" />
+        }
+        @if (TempData["MensajeAgregar"] != null)
+        {
+            <div class="custom-alert show">
+                @TempData["MensajeAgregar"]
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>
-            <div>
-                <label for="idCategoria">Categoria</label>
-                <select id="idCategoria" name="idCategoria" class="">
-                    @foreach (var categoria in ViewBag.Categorias)
-                    {
-                        <option value="@categoria.idCategoria">@categoria.nombre</option>
-                    }
-                </select>
+        }
+        <section class="info__product">
+            <div class="title__state">
+                <h2 class="title">INFORMACION GENERAL DEL PRODUCTO</h2>
+                <div class="container__state">
+                    <input type="hidden" id="Activo" name="estado" value="true" />
+                    <button type="button" id="btnPublicado" class="btn btn__public active">Publicado</button>
+                    <button type="button" id="btnNoPublicado" class="btn btn__nopublic">No Publicado</button>
+                </div>
             </div>
-        </div>
-        <div class="container__description">
-            <label class="lbl" for="input_descripcion_producto">Descripcion del producto</label>
-            <textarea class="input__description"
-                      id="input_descripcion_producto"
-                      type="text" placeholder="Escribe una descripción..."
-                      rows="5">
+            <div class="container__name">
+                <div>
+                    <label class="lbl" for="Nombre">Nombre del producto</label>
+                    <input class="input__name" id="Nombre" name="Nombre" type="text" placeholder="Laptop HP Victus 15" required />
+                </div>
+                <div>
+                    <label class="lbl" for="idCategoria">Categoria</label>
+                    <select id="idCategoria" name="idCategoria" class="select__category" required>
+                        @foreach (var categoria in ViewBag.Categorias)
+                        {
+                            <option value="@categoria.idCategoria">@categoria.nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="container__description">
+                <label class="lbl" for="Descripcion">Descripcion del producto</label>
+                <textarea class="input__description"
+                            id="Descripcion"
+                            name="Descripcion"
+                            type="text" placeholder="Escribe una descripción..."
+                            rows="5" required>
             </textarea>
+            </div>
+            <div class="additional__img">
+                <label class="additional__lbl" for="ImagenesAdicionales">
+                    <span class="upload__span">Cargar imagenes adicionales (maximo 4)</span>
+                    <input id="ImagenesAdicionales" name="ImagenesAdicionales" class="upload__input" type="file" multiple accept="image/*" />
+                </label>
+            </div>
+        </section>
+        <section class="imgprice__product">
+            <div class="upload__container">
+                <label class="upload__lbl" for="ImagenPrincipal">
+                    <span class="upload__span">Cargar Imagen Principal</span>
+                    <input class="upload__input" id="ImagenPrincipal" name="ImagenPrincipal" type="file" accept="image/*" required />
+                </label>
+            </div>
+            <label class="lbl" for="Precio">Precio</label>
+            <input class="input__price" id="Precio" name="Precio" type="text" placeholder="0" required />
+            <label class="lbl" for="PrecioDescuento">Precio con descuento</label>
+            <input class="input__price" id="PrecioDescuento" name="PrecioDescuento" type="text" placeholder="0" required />
+            <label class="lbl" for="Stock">Stock</label>
+            <input class="input__price" id="Stock" name="Stock" type="number" placeholder="0" required />
+        </section>
+        <div class="container__actions">
+            <a class="btn btn__exit" href="@Url.Action("Gestion", "Productos")">Salir</a>
+            <button type="submit" class="btn btn__save">Guardar</button>
         </div>
-        <div class="additional__img">
-            <label class="additional__lbl" for="additional__img">
-                <span class="upload__span">Cargar imagenes adicionales (maximo 4)</span>
-                <input id="additional__img" class="upload__input" type="file" />
-            </label>
-        </div>
-    </section>
-    <section class="imgprice__product">
-        <div class="upload__container">
-            <label class="upload__lbl" for="image-upload">
-                <span class="upload__span">Cargar Imagen Principal</span>
-                <input class="upload__input" id="image-upload" type="file" accept="image/*" />
-            </label>
-        </div>
-        <label class="lbl" for="input_precio_producto">Precio</label>
-        <input class="input__price" id="input_precio_producto" type="text" placeholder="0"/>
-        <label class="lbl" for="input_precio_descuento">Precio con descuento</label>
-        <input class="input__price" id="input_precio_descuento" type="text" placeholder="0"/>
-        <label class="lbl" for="input_stock_producto">Stock</label>
-        <input class="input__price" id="input_stock_producto" type="number" placeholder="0"/>
-    </section>
-    <div class="container__actions">
-        <button class="btn btn__exit">Salir</button>
-        <button class="btn btn__save">Guardar</button>
-    </div>
-</main>
+    </main>
+</form>
+
+@section Scripts {
+    <script>
+        const btnPublicado = document.getElementById('btnPublicado');
+        const btnNoPublicado = document.getElementById('btnNoPublicado');
+        const inputActivo = document.getElementById('Activo');
+
+        btnPublicado.addEventListener('click', function () {
+            inputActivo.value = "true";
+            btnPublicado.classList.add('active');
+            btnNoPublicado.classList.remove('active');
+        });
+
+        btnNoPublicado.addEventListener('click', function () {
+            inputActivo.value = "false";
+            btnNoPublicado.classList.add('active');
+            btnPublicado.classList.remove('active');
+        });
+    </script>
+}

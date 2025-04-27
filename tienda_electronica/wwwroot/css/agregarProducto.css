@@ -32,19 +32,22 @@
     overflow: hidden;
 }
 
-.btn__public:hover {
+.btn.active {
     background-color: #ed1515;
-    color: #fff;
+    color: white;
+}
+
+.btn__public:hover {
+    cursor: pointer;
 }
 
 .btn__nopublic:hover {
-    background-color: #ed1515;
-    color: #fff;
+    cursor: pointer;
 }
 
 .container__name {
     display: flex;
-    gap: 200px;
+    gap: 350px;
 }
 
 .lbl {
@@ -59,7 +62,15 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
-    width: 200%;
+    width: 250%;
+}
+
+.select__category {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 2px;
 }
 
 .input__description {
@@ -159,6 +170,7 @@
 .btn__exit {
     background-color: #ff2323;
     color: #fff;
+    text-decoration: none;
 }
 
 .btn__exit:hover {
@@ -172,4 +184,41 @@
 
 .btn__save:hover {
     background-color: #00b821;
+}
+
+/* Mensaje Error */
+
+.custom-alert {
+    position: relative;
+    padding: 1rem 2rem 1rem 1rem;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin: 10px 0;
+    animation: fadeOut 10s forwards;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
 }

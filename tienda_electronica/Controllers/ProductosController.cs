@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
 using tienda_electronica.Models;
+using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
 {
@@ -58,6 +59,22 @@ namespace tienda_electronica.Controllers
             var categorias = categoriaData.ObtenerCategorias();
             ViewBag.Categorias = categorias;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Agregar(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
+        {
+            try
+            {
+                int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
+                TempData["MensajeAgregar"] = "Producto agregado correctamente.";
+                return RedirectToAction("Gestion");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Agregar");
+            }
         }
     }
 }
