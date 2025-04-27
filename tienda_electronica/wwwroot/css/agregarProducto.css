@@ -165,6 +165,7 @@
     border: none;
     font-size: 16px;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .btn__exit {
@@ -189,6 +190,7 @@
 /* Mensaje Error */
 
 .custom-alert {
+    top: 0;
     position: relative;
     padding: 1rem 2rem 1rem 1rem;
     background-color: #f44336;

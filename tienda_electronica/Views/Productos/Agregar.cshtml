@@ -7,22 +7,54 @@
 <link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
+@section Scripts {
+    <script>
+        const btnPublicado = document.getElementById('btnPublicado');
+        const btnNoPublicado = document.getElementById('btnNoPublicado');
+        const inputActivo = document.getElementById('Activo');
+
+        btnPublicado.addEventListener('click', function () {
+            inputActivo.value = "true";
+            btnPublicado.classList.add('active');
+            btnNoPublicado.classList.remove('active');
+        });
+
+        btnNoPublicado.addEventListener('click', function () {
+            inputActivo.value = "false";
+            btnNoPublicado.classList.add('active');
+            btnPublicado.classList.remove('active');
+        });
+    </script>
+    <script>
+        const form = document.querySelector('form');
+        const imagenPrincipalInput = document.getElementById('ImagenPrincipal');
+
+        form.addEventListener('submit', function (e) {
+            if (imagenPrincipalInput.files.length === 0) {
+                e.preventDefault();
+                alert('Por favor, sube una imagen principal.');
+            }
+        });
+    </script>
+}
+
 <form asp-action="Agregar" asp-controller="Productos" method="post" enctype="multipart/form-data">
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+
     <main class="form__product">
-        @if (TempData["Error"] != null)
-        {
-            <div class="custom-alert show">
-                @TempData["Error"]
-                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        }
-        @if (TempData["MensajeAgregar"] != null)
-        {
-            <div class="custom-alert show">
-                @TempData["MensajeAgregar"]
-                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-        }
         <section class="info__product">
             <div class="title__state">
                 <h2 class="title">INFORMACION GENERAL DEL PRODUCTO</h2>
@@ -53,12 +85,11 @@
                             id="Descripcion"
                             name="Descripcion"
                             type="text" placeholder="Escribe una descripción..."
-                            rows="5" required>
-            </textarea>
+                            rows="5" required></textarea>
             </div>
             <div class="additional__img">
                 <label class="additional__lbl" for="ImagenesAdicionales">
-                    <span class="upload__span">Cargar imagenes adicionales (maximo 4)</span>
+                    <span class="upload__span">Cargar imagenes adicionales (maximo 4, opcional)</span>
                     <input id="ImagenesAdicionales" name="ImagenesAdicionales" class="upload__input" type="file" multiple accept="image/*" />
                 </label>
             </div>
@@ -67,7 +98,7 @@
             <div class="upload__container">
                 <label class="upload__lbl" for="ImagenPrincipal">
                     <span class="upload__span">Cargar Imagen Principal</span>
-                    <input class="upload__input" id="ImagenPrincipal" name="ImagenPrincipal" type="file" accept="image/*" required />
+                    <input class="upload__input" id="ImagenPrincipal" name="ImagenPrincipal" type="file" accept="image/*" />
                 </label>
             </div>
             <label class="lbl" for="Precio">Precio</label>
@@ -83,23 +114,3 @@
         </div>
     </main>
 </form>
-
-@section Scripts {
-    <script>
-        const btnPublicado = document.getElementById('btnPublicado');
-        const btnNoPublicado = document.getElementById('btnNoPublicado');
-        const inputActivo = document.getElementById('Activo');
-
-        btnPublicado.addEventListener('click', function () {
-            inputActivo.value = "true";
-            btnPublicado.classList.add('active');
-            btnNoPublicado.classList.remove('active');
-        });
-
-        btnNoPublicado.addEventListener('click', function () {
-            inputActivo.value = "false";
-            btnNoPublicado.classList.add('active');
-            btnPublicado.classList.remove('active');
-        });
-    </script>
-}
