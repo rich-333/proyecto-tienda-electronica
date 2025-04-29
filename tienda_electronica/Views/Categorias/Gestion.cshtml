@@ -1,13 +1,21 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Categorias.Categoria>
+
+@{
     ViewData["Title"] = "Gestión de Categorias";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/gestionCategorias.css" rel="stylesheet" />
+<link href="~/css/gestionCategorias.css" rel="stylesheet" />
 }
 
 <main>
+
+    <div class="header__management">
+        <a class="add" href="@Url.Action("Agregar", "Categorias")">
+            Agregar
+        </a>
+    </div>
     <table>
 
         <thead class="table__header">
@@ -20,23 +28,23 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>Computadoras</td>
-                <td>
-                    Máquina electrónica capaz de realizar un tratamiento automático de la información y de resolver con gran rapidez problemas 
-                    matemáticos y lógicos mediante programas informáticos.
-                </td>
-                <td>
-                    <button class="btn btn__edit">
-                        <img class="img__editar" src="~/img/gestion/editar.png" />
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn__delete">
-                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                    </button>
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.descripcion</td>
+                    <td>
+                        <button class="btn btn__edit">
+                            <img class="img__editar" src="~/img/gestion/editar.png" />
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn__delete">
+                            <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
+                        </button>
+                    </td>
+                </tr>
+            }
         </tbody>
 
     </table>
