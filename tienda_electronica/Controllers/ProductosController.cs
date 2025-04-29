@@ -58,7 +58,7 @@ namespace tienda_electronica.Controllers
         {
             var categorias = categoriaData.ObtenerCategorias();
             ViewBag.Categorias = categorias;
-            return View();
+            return View(new Producto());
         }
 
         [HttpPost]
