@@ -13,6 +13,8 @@
         public bool estado { get; set; }
         public string rutaImagen { get; set; }
 
+        public IFormFile imagenPrincipal { get; set; }
+        public List<IFormFile> imagenesAdicionales { get; set; }
         public void MarcarComoInactivo()
         {
 

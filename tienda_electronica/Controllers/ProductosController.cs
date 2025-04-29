@@ -62,12 +62,26 @@ namespace tienda_electronica.Controllers
         }
 
         [HttpPost]
-        public IActionResult Agregar(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
+        public IActionResult Guardar(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
         {
             try
             {
-                int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
+                /*int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
                 TempData["MensajeAgregar"] = "Producto agregado correctamente.";
+                return RedirectToAction("Gestion");*/
+                if (producto.idProducto == 0)
+                {
+                    // NUEVO PRODUCTO
+                    int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
+                    TempData["MensajeAgregar"] = "Producto agregado correctamente.";
+                }
+                else
+                {
+                    // EDITAR PRODUCTO
+                    productoData.EditarProducto(producto, imagenPrincipal, imagenesAdicionales);
+                    TempData["MensajeAgregar"] = "Producto editado correctamente.";
+                }
+
                 return RedirectToAction("Gestion");
             }
             catch (Exception ex)
@@ -76,5 +90,22 @@ namespace tienda_electronica.Controllers
                 return RedirectToAction("Agregar");
             }
         }
+
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+            var producto = productoData.ObtenerProductoPorId(id);
+            if (producto == null)
+            {
+                TempData["Error"] = "Producto no encontrado";
+                return RedirectToAction("Gestion");
+            }
+
+            var categorias = categoriaData.ObtenerCategorias();
+            ViewBag.Categorias = categorias;
+
+            return View("Agregar", producto);
+        }
+
     }
 }

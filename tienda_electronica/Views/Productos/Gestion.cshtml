@@ -62,7 +62,7 @@
                         <img class="img__producto" src="@item.rutaImagen" alt="Imagen del producto"/>
                     </td>
                     <td>
-                        <a href="@Url.Action("Agregar", "Productos")" class="btn btn__edit">
+                        <a href="@Url.Action("Editar", "Productos", new { id = item.idProducto })" class="btn btn__edit">
                             <img class="img__editar" src="~/img/gestion/editar.png" />
                         </a>
                     </td>

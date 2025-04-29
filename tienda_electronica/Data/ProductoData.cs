@@ -107,7 +107,7 @@ namespace tienda_electronica.Data
 
                         if (imagenesAdicionales != null && imagenesAdicionales.Count > 0)
                         {
-                            foreach (var imagen in imagenesAdicionales.Take(4)) // Máximo 4
+                            foreach (var imagen in imagenesAdicionales.Take(4))
                             {
                                 if (imagen != null && imagen.Length > 0)
                                 {
@@ -165,6 +165,134 @@ namespace tienda_electronica.Data
                 {
                     cmd.Parameters.AddWithValue("@id", idProducto);
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public Producto ObtenerProductoPorId(int idProducto)
+        {
+            Producto producto = null;
+
+            using (var conn = _conexion.ObtenerConexion())
+            {
+                conn.Open();
+                var query = @"SELECT p.*, 
+                         (SELECT ruta_imagen 
+                          FROM imagenes_producto 
+                          WHERE id_producto = p.id_producto 
+                          LIMIT 1) AS rutaImagen
+                      FROM productos p
+                      WHERE p.id_producto = @idProducto";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            producto = new Producto
+                            {
+                                idProducto = reader["id_producto"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_producto"]),
+                                idCategoria = reader["id_categoria"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_categoria"]),
+                                nombre = reader["nombre"] == DBNull.Value ? "" : reader["nombre"].ToString(),
+                                descripcion = reader["descripcion"] == DBNull.Value ? "" : reader["descripcion"].ToString(),
+                                precio = reader["precio"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio"]),
+                                stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
+                                precioDescuento = reader["precio_descuento"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio_descuento"]),
+                                estado = reader["activo"] == DBNull.Value ? false : Convert.ToBoolean(reader["activo"]),
+                                rutaImagen = reader["rutaImagen"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return producto;
+        }
+
+        public void EditarProducto(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
+        {
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var queryUpdateProducto = @"UPDATE productos SET
+                                                id_categoria = @idCategoria,
+                                                nombre = @nombre,
+                                                descripcion = @descripcion,
+                                                precio = @precio,
+                                                stock = @stock,
+                                                precio_descuento = @precioDescuento,
+                                                activo = @estado
+                                            WHERE id_producto = @idProducto";
+
+                        using (var cmdProducto = new MySqlCommand(queryUpdateProducto, connection, transaction))
+                        {
+                            cmdProducto.Parameters.AddWithValue("@idCategoria", producto.idCategoria);
+                            cmdProducto.Parameters.AddWithValue("@nombre", producto.nombre);
+                            cmdProducto.Parameters.AddWithValue("@descripcion", producto.descripcion);
+                            cmdProducto.Parameters.AddWithValue("@precio", producto.precio);
+                            cmdProducto.Parameters.AddWithValue("@stock", producto.stock);
+                            cmdProducto.Parameters.AddWithValue("@precioDescuento", producto.precioDescuento);
+                            cmdProducto.Parameters.AddWithValue("@estado", producto.estado);
+                            cmdProducto.Parameters.AddWithValue("@idProducto", producto.idProducto);
+
+                            cmdProducto.ExecuteNonQuery();
+                        }
+
+                        if (imagenPrincipal != null && imagenPrincipal.Length > 0)
+                        {
+                            var queryDeleteImagenes = "DELETE FROM imagenes_producto WHERE id_producto = @idProducto";
+                            using (var cmdDeleteImagenes = new MySqlCommand(queryDeleteImagenes, connection, transaction))
+                            {
+                                cmdDeleteImagenes.Parameters.AddWithValue("@idProducto", producto.idProducto);
+                                cmdDeleteImagenes.ExecuteNonQuery();
+                            }
+
+                            var rutaImagenPrincipal = GuardarImagen(imagenPrincipal);
+
+                            var queryInsertImagenPrincipal = @"INSERT INTO imagenes_producto (id_producto, ruta_imagen)
+                                                        VALUES (@idProducto, @rutaImagen)";
+                            using (var cmdInsertImagen = new MySqlCommand(queryInsertImagenPrincipal, connection, transaction))
+                            {
+                                cmdInsertImagen.Parameters.AddWithValue("@idProducto", producto.idProducto);
+                                cmdInsertImagen.Parameters.AddWithValue("@rutaImagen", rutaImagenPrincipal);
+                                cmdInsertImagen.ExecuteNonQuery();
+                            }
+
+                            if (imagenesAdicionales != null && imagenesAdicionales.Count > 0)
+                            {
+                                foreach (var imagen in imagenesAdicionales.Take(4))
+                                {
+                                    if (imagen != null && imagen.Length > 0)
+                                    {
+                                        var rutaImagen = GuardarImagen(imagen);
+
+                                        var queryInsertImagenAdicional = @"INSERT INTO imagenes_producto (id_producto, ruta_imagen)
+                                                                    VALUES (@idProducto, @rutaImagen)";
+                                        using (var cmdInsertImagenAdicional = new MySqlCommand(queryInsertImagenAdicional, connection, transaction))
+                                        {
+                                            cmdInsertImagenAdicional.Parameters.AddWithValue("@idProducto", producto.idProducto);
+                                            cmdInsertImagenAdicional.Parameters.AddWithValue("@rutaImagen", rutaImagen);
+                                            cmdInsertImagenAdicional.ExecuteNonQuery();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
         }
