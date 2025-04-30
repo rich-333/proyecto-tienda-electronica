@@ -2,11 +2,19 @@
 
 namespace tienda_electronica.Models.Usuarios
 {
-    public class GestorDeProductos : Persona
+    public class Usuario : Persona
     {
         public string rutaFotoEmpleado { get; set; }
         public string rol { get; set; }
+        public void AgregarUsuario(Persona persona)
+        {
 
+        }
+
+        public void EliminarUsuario(int idUsuario)
+        {
+
+        }
         public void AgregarProducto(Producto producto)
         {
 
@@ -18,6 +26,10 @@ namespace tienda_electronica.Models.Usuarios
         }
 
         public void EliminarProducto(int idProducto)
+        {
+
+        }
+        public void VerVentasRealizadas()
         {
 
         }
