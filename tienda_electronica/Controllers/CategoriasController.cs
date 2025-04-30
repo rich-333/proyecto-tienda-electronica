@@ -21,5 +21,20 @@ namespace tienda_electronica.Controllers
         {
             return View();
         }
+
+        public IActionResult Eliminar(int id)
+        {
+            try
+            {
+                categoriaData.EliminarCategoria(id);
+                TempData["Mensaje Eliminar"] = "Categoria eliminada correctamente";
+                return RedirectToAction("Gestion");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Gestion");
+            }
+        }
     }
 }

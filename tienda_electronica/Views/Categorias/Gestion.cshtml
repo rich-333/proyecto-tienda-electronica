@@ -10,7 +10,20 @@
 }
 
 <main>
-
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeEliminar"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["MensajeEliminar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
     <div class="header__management">
         <a class="add" href="@Url.Action("Agregar", "Categorias")">
             Agregar
@@ -39,9 +52,9 @@
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn__delete">
+                        <a asp-controller="Categorias" asp-action="Eliminar" asp-route-id="@item.idCategoria" onclick="return confirm('Estas seguro que desea eliminar este producto?')" class="btn btn__delete">
                             <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                        </button>
+                        </a>
                     </td>
                 </tr>
             }

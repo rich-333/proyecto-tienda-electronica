@@ -128,7 +128,6 @@ namespace tienda_electronica.Data
 
                         transaction.Commit();
                     }
-
                     catch
                     {
                         transaction.Rollback();

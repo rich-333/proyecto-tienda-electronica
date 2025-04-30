@@ -39,5 +39,56 @@ namespace tienda_electronica.Data
 
             return categorias;
         }
+
+        public void EliminarCategoria(int idCategoria)
+        {
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+                var query = "DELETE FROM categorias WHERE id_categoria = @id";
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCategoria);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AgregarCategoria(Categoria categoria)
+        {
+            int idCategoriaNueva = 0;
+
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var queryCategoria = @"INSERT INTO categorias 
+                            (id_categoria, nombre, descripcion)
+                            VALUES (@idCategoria, @nombre, @descripcion);
+                            SELECT LAST_INSERT_ID();";
+                        using (var cmdCategoria = new MySqlCommand(queryCategoria, connection, transaction))
+                        {
+                            cmdCategoria.Parameters.AddWithValue("@idCategoria", categoria.idCategoria);
+                            cmdCategoria.Parameters.AddWithValue("@nombre", categoria.nombre);
+                            cmdCategoria.Parameters.AddWithValue("@descripcion", categoria.descripcion);
+
+                            idCategoriaNueva = Convert.ToInt32(cmdCategoria.ExecuteScalar());
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        
     }
 }
