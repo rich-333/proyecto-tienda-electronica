@@ -73,6 +73,7 @@
 .btn__exit {
     background-color: #ff2323;
     color: #fff;
+    text-decoration: none;
 }
 
 .btn__exit:hover {

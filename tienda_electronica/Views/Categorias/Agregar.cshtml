@@ -1,32 +1,59 @@
-﻿@{
+﻿@model tienda_electronica.Models.Categorias.Categoria
+
+@{
     ViewData["Title"] = "Agregar Categoria";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/agregarCategoria.css" rel="stylesheet" />
+<link href="~/css/agregarCategoria.css" rel="stylesheet" />
 }
 
-<main class="form__categoria">
-    <section class="info__categoria">
-        <div>
-            <h2 class="title">INFORMACION GENERAL DE LA CATEGORIA</h2>
+<form asp-action="Guardar" asp-controller="Categorias" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="idCategoria" />
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
-        <div class="">
-            <label class="lbl" for="nombre_categoria">Nombre de la categoria</label>
-            <input class="input__name" id="nombre_categoria" type="text" placeholder="Laptop HP Victus 15" />
+    }
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
-        <div class="container__description">
-            <label class="lbl" for="descripcion_categoria">Descripcion de la categoria</label>
-            <textarea 
-                class="input__description" 
-                id="descripcion_categoria" 
+    }
+
+    <main class="form__categoria">
+        <section class="info__categoria">
+            <div>
+                <h2 class="title">INFORMACION GENERAL DE LA CATEGORIA</h2>
+            </div>
+            <div class="">
+                <label class="lbl" for="nombre">Nombre de la categoria</label>
+                <input class="input__name" asp-for="nombre" type="text" placeholder="Laptop HP Victus 15" />
+            </div>
+            <div class="container__description">
+                <label class="lbl" for="descripcion">Descripcion de la categoria</label>
+                <textarea class="input__description"
+                asp-for="descripcion"
                 type="text" placeholder="Escribe una descripción..."
                 rows="5"></textarea>
+            </div>
+        </section>
+        <div class="container__actions">
+            <a class="btn btn__exit" href="@Url.Action("Gestion", "Categorias")">Salir</a>
+            @if(Model.idCategoria == 0)
+            {
+                <button type="submit" class="btn btn__save">Guardar</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn__save">Actualizar</button>
+            }
         </div>
-    </section>
-    <div class="container__actions">
-        <button class="btn btn__exit">Salir</button>
-        <button class="btn btn__save">Guardar</button>
-    </div>
-</main>
+    </main>
+</form>

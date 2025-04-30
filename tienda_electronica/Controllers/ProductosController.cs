@@ -71,13 +71,11 @@ namespace tienda_electronica.Controllers
                 return RedirectToAction("Gestion");*/
                 if (producto.idProducto == 0)
                 {
-                    // NUEVO PRODUCTO
                     int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
                     TempData["MensajeAgregar"] = "Producto agregado correctamente.";
                 }
                 else
                 {
-                    // EDITAR PRODUCTO
                     productoData.EditarProducto(producto, imagenPrincipal, imagenesAdicionales);
                     TempData["MensajeAgregar"] = "Producto editado correctamente.";
                 }

@@ -54,7 +54,7 @@ namespace tienda_electronica.Data
             }
         }
 
-        public void AgregarCategoria(Categoria categoria)
+        public int AgregarCategoria(Categoria categoria)
         {
             int idCategoriaNueva = 0;
 
@@ -87,8 +87,72 @@ namespace tienda_electronica.Data
                     }
                 }
             }
+
+            return idCategoriaNueva;
         }
 
-        
+        public Categoria ObtenerCategoriaPorId(int idCategoria)
+        {
+            Categoria categoria = null;
+
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+                var queryObtenerCategoriaPorId = @"SELECT * FROM categorias
+                                                    WHERE id_categoria = @idCategoria";
+                using (var cmd = new MySqlCommand(queryObtenerCategoriaPorId, connection))
+                {
+                    cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            categoria = new Categoria
+                            {
+                                idCategoria = Convert.ToInt32(reader["id_categoria"]),
+                                nombre = reader["nombre"].ToString(),
+                                descripcion = reader["descripcion"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return categoria;
+        }
+
+        public void EditarCategoria(Categoria categoria)
+        {
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+
+                using ( var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        var queryEditCategoria = @"UPDATE categorias SET 
+                                                 nombre = @nombre,
+                                                 descripcion = @descripcion
+                                                 WHERE id_categoria = @idCategoria";
+                        using (var cmdCategoria = new MySqlCommand(queryEditCategoria, connection, transaction))
+                        {
+                            cmdCategoria.Parameters.AddWithValue("@nombre", categoria.nombre);
+                            cmdCategoria.Parameters.AddWithValue("@descripcion", categoria.descripcion);
+                            cmdCategoria.Parameters.AddWithValue("@idCategoria", categoria.idCategoria);
+
+                            cmdCategoria.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback(); 
+                        throw;
+                    }
+                }
+            } 
+        }
     }
 }

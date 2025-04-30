@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
+using tienda_electronica.Models.Categorias;
 
 namespace tienda_electronica.Controllers
 {
@@ -19,7 +20,7 @@ namespace tienda_electronica.Controllers
 
         public IActionResult Agregar()
         {
-            return View();
+            return View(new Categoria());
         }
 
         public IActionResult Eliminar(int id)
@@ -35,6 +36,42 @@ namespace tienda_electronica.Controllers
                 TempData["Error"] = ex.Message;
                 return RedirectToAction("Gestion");
             }
+        }
+
+        [HttpPost]
+        public IActionResult Guardar (Categoria categoria)
+        {
+            try
+            {
+                if (categoria.idCategoria == 0)
+                {
+                    int idProducto = categoriaData.AgregarCategoria(categoria);
+                    TempData["MensajeAgregar"] = "Categoria agregada correctamente.";
+                }
+                else
+                {
+                    categoriaData.EditarCategoria(categoria);
+                    TempData["MensajeEditar"] = "Categoria editada correctamente.";
+                }
+                return RedirectToAction("Gestion");
+            }
+            catch (Exception ex) 
+            {
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Agregar");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Editar(int id) 
+        {
+            var categoria = categoriaData.ObtenerCategoriaPorId(id);
+            if (categoria == null)
+            {
+                TempData["Error"] = "Categoria no encontrada";
+                return RedirectToAction("Gestion");
+            }
+            return View("Agregar", categoria);
         }
     }
 }

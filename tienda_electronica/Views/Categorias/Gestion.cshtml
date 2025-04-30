@@ -29,6 +29,7 @@
             Agregar
         </a>
     </div>
+
     <table>
 
         <thead class="table__header">
@@ -47,9 +48,9 @@
                     <td>@item.nombre</td>
                     <td>@item.descripcion</td>
                     <td>
-                        <button class="btn btn__edit">
+                        <a href="@Url.Action("Editar", "Categorias", new { id  = item.idCategoria })" class="btn btn__edit">
                             <img class="img__editar" src="~/img/gestion/editar.png" />
-                        </button>
+                        </a>
                     </td>
                     <td>
                         <a asp-controller="Categorias" asp-action="Eliminar" asp-route-id="@item.idCategoria" onclick="return confirm('Estas seguro que desea eliminar este producto?')" class="btn btn__delete">

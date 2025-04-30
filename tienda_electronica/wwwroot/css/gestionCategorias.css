@@ -72,8 +72,9 @@ tbody tr:hover {
     text-decoration: none;
     font-weight: 500;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
-    .add:hover {
-        background-color: #0627cd;
-    }
+.add:hover {
+    background-color: #0627cd;
+}
