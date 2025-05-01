@@ -1,13 +1,36 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Usuarios.Usuario>
+
+@{
     ViewData["Title"] = "Gestion Usuarios";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/gestionUsuarios.css" rel="stylesheet" />
+<link href="~/css/gestionUsuarios.css" rel="stylesheet" />
 }
 
 <main>
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeEliminar"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["MensajeEliminar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+
+    <div class="header__management">
+        <a class="add" href="@Url.Action("Agregar", "Usuarios")">
+            Agregar
+        </a>
+    </div>
+
     <table>
 
         <thead class="table__header">
@@ -28,30 +51,29 @@
         </thead>
 
         <tbody>
-
-            <tr>
-
-                <td>Juan Alberto</td>
-                <td>Garcia</td>
-                <td>
-                    <img class="img__user" src="~/img/gestion/cabeson.jpg" />
-                </td>
-                <td>juan@gmail.com</td>
-                <td>juanA123</td>
-                <td>Administrador</td>
-                <td>
-                    <button class="btn btn__edit">
-                        <img class="img__editar" src="~/img/gestion/editar.png" />
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn__delete">
-                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                    </button>
-                </td>
-
-            </tr>
-
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.apellido</td>
+                    <td>
+                        <img class="img__user" src="@item.rutaFotoEmpleado" alt="Foto de perfil del usuario"/>
+                    </td>
+                    <td>@item.email</td>
+                    <td>@item.contrasena</td>
+                    <td>@item.rol</td>
+                    <td>
+                        <a href="@Url.Action("Editar", "Usuarios", new { id = item.idUsuario })" class="btn btn__edit">
+                            <img class="img__editar" src="~/img/gestion/editar.png" />
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Usuarios" asp-action="Eliminar" asp-route-id="@item.idUsuario" onclick="return confirm('Estas seguro que desea eliminar este usuario?')" class="btn btn__delete">
+                            <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
 
     </table>

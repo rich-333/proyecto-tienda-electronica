@@ -1,54 +1,92 @@
-﻿@{
+﻿@model tienda_electronica.Models.Usuarios.Usuario
+
+@{
     ViewData["Title"] = "Agregar Usuario";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/agregarUsuario.css" rel="stylesheet" />
+<link href="~/css/agregarUsuario.css" rel="stylesheet" />
 }
 
-<main class="form__usuario">
-    <section class="info__user">
-        <div>
-            <h2 class="title">INFORMACION GENERAL DEL USUARIO</h2>
+<form asp-action="Guardar" asp-controller"Usuarios" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="idUsuario"/>
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
-        <div>
-            <label class="lbl" for="nombre_usuario">Nombre del usuario</label>
-            <input class="input" id="nombre_usuario" type="text" placeholder="Alberto" />
+    }
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
-        <div>
-            <label class="lbl" for="apellido_usuario">Apellido del usuario</label>
-            <input class="input" id="apellido_usuario" type="text" placeholder="Garcia Cardozo" />
+    }
+    @if (Model.idUsuario == 0)
+    {
+        ViewData["Title"] = "Agregar Usuario";
+    }
+    else
+    {
+        ViewData["Title"] = "Editar Usuario";
+    }
+
+    <main class="form__usuario">
+        <section class="info__user">
+            <div>
+                <h2 class="title">INFORMACION GENERAL DEL USUARIO</h2>
+            </div>
+            <div>
+                <label class="lbl" for="nombre">Nombre del usuario</label>
+                <input class="input" asp-for="nombre" type="text" placeholder="Alberto" required/>
+            </div>
+            <div>
+                <label class="lbl" for="apellido">Apellido del usuario</label>
+                <input class="input" asp-for="apellido" type="text" placeholder="Garcia Cardozo" required/>
+            </div>
+            <div>
+                <label class="lbl" for="email">Email del usuario</label>
+                <input class="input" asp-for="email" type="email" placeholder="Alberto@gmail.com" />
+            </div>
+            <div>
+                <label class="lbl" for="contrasena">Contraseña del usuario</label>
+                <input class="input" asp-for="contrasena" type="password" placeholder="albertoGC051&" required/>
+            </div>
+        </section>
+        <section class="img__user">
+            <div class="upload__container">
+                <label class="upload__lbl" for="rutaFotoEmpleado">
+                    @if (string.IsNullOrEmpty(Model.rutaFotoEmpleado))
+                    {
+                        <span class="upload__span">Cargar Imagen Del Usuario</span>
+                    }
+                    <input  class="upload__input" asp-for="rutaFotoEmpleado" type="file" accept="image/*" />
+                    @if (!string.IsNullOrEmpty(Model.rutaFotoEmpleado))
+                    {
+                        <img class="img" src="@Model.rutaFotoEmpleado" alt="Imagen actual del usuario"/>
+                    }
+                </label>
+            </div>
+            <div class="container__rol">
+                <label class="lbl" for="rol">Rol</label>
+                <select asp-for="rol" asp-items="ViewBag.Roles" class="select__rol" required>
+                    <option value="">Seleccione un rol</option>
+                </select>
+            </div>
+        </section>
+        <div class="container__actions">
+            <a href="@Url.Action("Gestion", "Usuarios")" class="btn btn__exit">Salir</a>
+            @if (Model.idUsuario == 0)
+            {
+                <button type="submit" class="btn btn__save">Guardar</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn__save">Actualizar</button>
+            }
         </div>
-        <div>
-            <label class="lbl" for="email_usuario">Email del usuario</label>
-            <input class="input" id="email_usuario" type="email" placeholder="Alberto@gmail.com" />
-        </div>
-        <div>
-            <label class="lbl" for="contra_usuario">Contraseña del usuario</label>
-            <input class="input" id="contra_usuario" type="password" placeholder="albertoGC051&" />
-        </div>
-    </section>
-    <section class="img__user">
-        <div class="upload__container">
-            <label class="upload__lbl" for="image-upload">
-                <span class="upload__span">Cargar Imagen Del Usuario</span>
-                <input class="upload__input" id="image-upload" type="file" accept="image/*" />
-            </label>
-        </div>
-        <div class="container__rol">
-            <details class="dropdown">
-                <summary>Roles</summary>
-                <ul>
-                    <li><a href="#">Administrador</a></li>
-                    <li><a href="#">Gestor de productos</a></li>
-                    <li><a href="#">Gestor de ventas</a></li>
-                </ul>
-            </details>
-        </div>
-    </section>
-    <div class="container__actions">
-        <button class="btn btn__exit">Salir</button>
-        <button class="btn btn__save">Guardar</button>
-    </div>
-</main>
+    </main>
+</form>

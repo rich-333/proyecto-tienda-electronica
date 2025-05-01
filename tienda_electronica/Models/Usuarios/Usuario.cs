@@ -4,6 +4,7 @@ namespace tienda_electronica.Models.Usuarios
 {
     public class Usuario : Persona
     {
+        public int idUsuario { get; set; }
         public string rutaFotoEmpleado { get; set; }
         public string rol { get; set; }
         public void AgregarUsuario(Persona persona)

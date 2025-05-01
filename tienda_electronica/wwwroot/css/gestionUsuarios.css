@@ -61,3 +61,62 @@ tbody tr:hover {
     width: 25px;
     height: 25px;
 }
+
+.header__management {
+    display: flex;
+    justify-content: end;
+}
+
+.add {
+    display: inline-block;
+    margin: 2px 0;
+    padding: 10px;
+    background-color: #0026ff;
+    border-radius: 5px;
+    color: #fff;
+    transition: 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.add:hover {
+    background-color: #0627cd;
+}
+
+/* Mensaje de error */
+
+.custom-alert {
+    position: relative;
+    padding: 1rem 2rem 1rem 1rem;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    margin: 10px 0;
+    animation: fadeOut 10s forwards;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
