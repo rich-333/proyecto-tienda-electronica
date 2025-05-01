@@ -1,0 +1,28 @@
+﻿@model tienda_electronica.Models.Ventas.Venta
+
+@{
+    ViewData["Title"] = "Editar Ventas";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Estilos {
+    <link href="~/css/editarVenta.css" rel="stylesheet" />
+}
+
+<form asp-action="Actualizar" asp-controller="Ventas" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="idPedido" />
+    <main class="form__venta">
+        <section class="form__info">
+            <div class="container__state">
+                <label class="lbl" for="estado">Estado Pedido</label>
+                <select asp-for="estado" asp-items="ViewBag.Estados" class="select__state" required>
+                    <option value="">Seleccione un estado</option>
+                </select>
+            </div>
+        </section>
+        <div class="container__actions">
+            <a href="@Url.Action("Gestion", "Ventas")" class="btn btn__exit">Salir</a>
+            <button type="submit" class="btn btn__save">Actualizar</button>
+        </div>
+    </main>
+</form>

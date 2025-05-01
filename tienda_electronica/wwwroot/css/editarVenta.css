@@ -1,0 +1,69 @@
+﻿.form__venta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form__info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 25px;
+    background-color: #f9f5ff;
+    border-radius: 1rem;
+}
+
+.container__state {
+    width: 250px;
+}
+
+.lbl {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.select__state {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+
+.container__actions {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn__exit {
+    background-color: #ff2323;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn__exit:hover {
+    background-color: #c80d0d;
+}
+
+.btn__save {
+    background-color: #00e624;
+    color: #fff;
+}
+
+.btn__save:hover {
+    background-color: #00b821;
+}

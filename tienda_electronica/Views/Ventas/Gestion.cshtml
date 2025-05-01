@@ -1,13 +1,44 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Ventas.Venta>
+
+@{
     ViewData["Title"] = "Gestion Ventas";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/gestionVentas.css" rel="stylesheet" />
+<link href="~/css/gestionVentas.css" rel="stylesheet" />
 }
 
 <main>
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeEliminar"] != null)
+    {
+        <div class="custom-alert show" id="miAlerta">
+            @TempData["MensajeEliminar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+
     <table>
 
         <thead class="table__header">
@@ -15,36 +46,32 @@
             <tr>
 
                 <th>Nombre Cliente</th>
+                <th>Apellido Cliente</th>
                 <th>Fecha Pedido</th>
                 <th>Total</th>
                 <th>Estado</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
 
             </tr>
 
         </thead>
 
         <tbody>
-
-            <tr>
-
-                <td>Quevedo Quispe</td>
-                <td>21/04/2025</td>
-                <td>2100 Bs</td>
-                <td>Pendiente</td>
-                <td>
-                    <button class="btn btn__edit">
-                        <img class="img__editar" src="~/img/gestion/editar.png" />
-                    </button>
-                </td>
-                <td>
-                    <button class="btn btn__delete">
-                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                    </button>
-                </td>
-                
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombreCliente</td>
+                    <td>@item.apellidoCliente</td>
+                    <td>@item.fechaPedido</td>
+                    <td>@item.total</td>
+                    <td>@item.estado</td>
+                    <td>
+                        <a href="@Url.Action("Editar", "Ventas", new { id = item.idPedido })" class="btn btn__edit">
+                            <img class="img__editar" src="~/img/gestion/editar.png" />
+                        </a>
+                    </td>
+                </tr>
+            }
 
         </tbody>
 

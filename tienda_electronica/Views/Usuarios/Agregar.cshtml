@@ -9,7 +9,7 @@
 <link href="~/css/agregarUsuario.css" rel="stylesheet" />
 }
 
-<form asp-action="Guardar" asp-controller"Usuarios" method="post" enctype="multipart/form-data">
+<form asp-action="Guardar" asp-controller="Usuarios" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="idUsuario"/>
     @if (TempData["Error"] != null)
     {
