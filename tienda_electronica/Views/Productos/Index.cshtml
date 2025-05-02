@@ -1,9 +1,11 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Productos.Producto>
+
+@{
     Layout = "_Layout";
 }
 
 @section Estilos {
-    <link href="~/css/productos.css" rel="stylesheet" />
+<link href="~/css/productos.css" rel="stylesheet" />
 }
 
 <main class="products">
@@ -20,20 +22,29 @@
         </details>
     </div>
     <div class="container__catalog">
-        <article class="product__container">
-            <div class="img__container">
-                <img class="img__product" src="~/img/home/productos/mando.jpg" />
-                <button class="button__favorite">
-                    <img class="icon__product" src="~/img/nav/favorito.png" />
-                </button>
-                <a href="#" class="button__eye">
-                    <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
-                </a>
-            </div>
-            <header class="product__header">
-                <h3 class="product__name">Mando</h3>
-                <span>220 Bs.</span>
-            </header>
-        </article>
+        @foreach (var producto in Model)
+        {
+            <article class="product__container">
+                <div class="img__container">
+                    <img class="img__product" src="~/@producto.rutaImagen" />
+                    <button class="button__favorite">
+                        <img class="icon__product" src="~/img/nav/favorito.png" />
+                    </button>
+                    <a href="#" class="button__eye">
+                        <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
+                    </a>
+                </div>
+                <header class="product__header">
+                    <h3 class="product__name">@producto.nombre</h3>
+                    <div class="container__price">
+                        <span>@producto.precio</span>
+                        @if (producto.precioDescuento > 0)
+                        {
+                            <span class="discount__price">@producto.precioDescuento</span>
+                        }
+                    </div>
+                </header>
+            </article>
+        }
     </div>
 </main>

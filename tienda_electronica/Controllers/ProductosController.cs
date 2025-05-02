@@ -16,7 +16,8 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var productos = productoData.ObtenerProductos();
+            return View(productos);
         }
         public IActionResult Detalle(int id)
         {
