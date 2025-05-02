@@ -1,13 +1,29 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Usuarios.Cliente>
+
+@{
     ViewData["Title"] = "Gestion Clientes";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 @section Estilos {
-    <link href="~/css/gestionClientes.css" rel="stylesheet" />
+<link href="~/css/gestionClientes.css" rel="stylesheet" />
 }
 
 <main>
+    @if (TempData["Error"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["Error"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
     <table>
 
         <thead>
@@ -16,35 +32,32 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
+                <th>Contraseña</th>
                 <th>Telefono</th>
                 <th>Direccion</th>
                 <th>Editar</th>
-                <th>Eliminar</th>
             </tr>
 
         </thead>
 
         <tbody>
 
-            <tr>
-
-                <td>Bryan</td>
-                <td>Quispe</td>
-                <td>bryan123@gmail.com</td>
-                <td>77912729</td>
-                <td>Av. Ingavi</td>
-                <td>
-                    <a class="link__edit btn">
-                        <img class="img__editar" src="~/img/gestion/editar.png" />
-                    </a>
-                </td>
-                <td>
-                    <button class="btn btn__delete">
-                        <img class="img__eliminar" src="~/img/gestion/elimiinar.png" />
-                    </button>
-                </td>
-
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nombre</td>
+                    <td>@item.apellido</td>
+                    <td>@item.email</td>
+                    <td>@item.contrasena</td>
+                    <td>@item.telefono</td>
+                    <td>@item.direccion</td>
+                    <td>
+                        <a href="@Url.Action("Editar", "Clientes", new { id = item.idCliente })" class="link__edit btn">
+                            <img class="img__editar" src="~/img/gestion/editar.png" />
+                        </a>
+                    </td>
+                </tr>
+            }
 
         </tbody>
 

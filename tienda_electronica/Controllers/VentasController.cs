@@ -26,7 +26,7 @@ namespace tienda_electronica.Controllers
 
             if (ventas == null)
             {
-                TempData["Error"] = "Venta no encontrada";
+                TempData["Error"] = "Venta no encontrada,";
                 return RedirectToAction("Gestion");
             }
 

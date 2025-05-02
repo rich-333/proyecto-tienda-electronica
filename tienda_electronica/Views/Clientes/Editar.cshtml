@@ -1,0 +1,41 @@
+﻿@model tienda_electronica.Models.Usuarios.Cliente
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section Estilos {
+    <link href="~/css/editarCliente.css" rel="stylesheet" />
+}
+
+<form asp-action="Actualizar" asp-controller="Clientes" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="idCliente" />
+    <main class="form__cliente">
+        <section class="info__cliente">
+            <div>
+                <h2 class="title">INFORMACION GENERAL DE CLIENTES</h2>
+            </div>
+            <div>
+                <label class="lbl" for="email">Email del cliente</label>
+                <input class="input" asp-for="email" type="email" placeholder="Alberto@gmail.com" required/>
+            </div>
+            <div>
+                <label class="lbl" for="contrasena">Contraseña del cliente</label>
+                <input class="input" asp-for="contrasena" type="password" placeholder="albertoGC051&" required/>
+            </div>
+            <div>
+                <label class="lbl" for="telefono">Telefono del cliente</label>
+                <input class="input" asp-for="telefono" type="tel" placeholder="77912729" required/>
+            </div>
+            <div>
+                <label class="lbl" for="direccion">Direccion del cliente</label>
+                <input class="input" asp-for="direccion" type="text" placeholder="Av. Ingavi" required/>
+            </div>
+        </section>
+        <div class="container__actions">
+            <a href="@Url.Action("Gestion", "Clientes")" class="btn btn__exit">Salir</a>
+            <button type="submit" class="btn btn__save">Actualizar</button>
+        </div>
+    </main>
+</form>
