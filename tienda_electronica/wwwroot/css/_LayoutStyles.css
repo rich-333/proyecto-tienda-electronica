@@ -73,7 +73,8 @@ body {
     width: 20px;
     height: 20px;
     object-fit: contain;
-    margin: 0 10px
+    margin: 0 10px;
+    cursor: pointer;
 }
 
 /* footer */
