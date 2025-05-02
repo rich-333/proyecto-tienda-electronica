@@ -124,16 +124,21 @@ body {
     background-color: var(--font-background-color-menu);
     width: 100%;
     max-width: none;
-    height: 80px;
+    height: 90px;
     border-radius: 1rem;
     padding: 5px 25px;
 }
 
 .header__container--title {
+    text-transform: uppercase;
     width: 80px;
+    font-size: 21px;
+    letter-spacing: 1px;
+    font-weight: 700;
 }
 
 .header__container--welcome {
+    padding-top: 10px;
     display: block;
     width: 100px;
 }
