@@ -15,6 +15,8 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Gestion()
         {
+            ViewBag.TituloMenu = "Gestion de Usuarios";
+
             var usuarios = usuarioData.ObtenerUsuarios();
             return View(usuarios);
         }

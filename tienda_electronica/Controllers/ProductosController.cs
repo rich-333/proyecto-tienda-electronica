@@ -27,6 +27,8 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Gestion()
         {
+            ViewBag.TituloMenu = "Gestion de Productos";
+
             var productos = productoData.ObtenerProductos();
             return View(productos);
         }

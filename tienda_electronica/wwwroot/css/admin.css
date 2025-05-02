@@ -93,7 +93,7 @@ body {
 .menu__signout {
     display: flex;
     align-items: center;
-    margin: 340px 0 0 0;
+    margin: 280px 0 0 0;
 }
 
 .btn__signout {
@@ -105,6 +105,7 @@ body {
     background-color: var(--font-background-color-menu);
     border: none;
     cursor: pointer;
+    letter-spacing: 2px;
 }
 
 .btn__signout:hover {

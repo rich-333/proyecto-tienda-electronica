@@ -14,6 +14,8 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Gestion()
         {
+            ViewBag.TituloMenu = "Gestion de Categorias";
+
             var categoria = categoriaData.ObtenerCategorias();
             return View(categoria);
         }

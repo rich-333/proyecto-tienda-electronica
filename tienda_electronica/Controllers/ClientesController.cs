@@ -14,6 +14,8 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Gestion()
         {
+            ViewBag.TituloMenu = "Gestion de Clientes";
+            
             var clientes = clienteData.ObtenerClientes();
             return View(clientes);
         }

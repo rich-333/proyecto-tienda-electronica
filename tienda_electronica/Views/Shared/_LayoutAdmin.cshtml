@@ -41,9 +41,15 @@
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a href="#" class="nav__link">
+                        <a href="@Url.Action("Gestion", "Ventas")" class="nav__link">
                             <img class="menu__img" src="~/img/layoutadmin/ventas.png" />
                             <span>Ventas</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="@Url.Action("Gestion", "Clientes")" class="nav__link">
+                            <img class="menu__img" src="~/img/layoutadmin/usuarios.png" />
+                            <span>Clientes</span>
                         </a>
                     </li>
                 </ul>
@@ -57,12 +63,15 @@
             </div>
         </div>
     </div>
-    
+
     <header class="header">
         <div class="header__container">
 
             <div>
-                <span class="header__container--title">Menu title</span>
+                @if(ViewBag.TituloMenu != null)
+                {
+                    <span class="header__container--title">@ViewBag.TituloMenu</span>
+                }
                 <span class="header__container--welcome">hello user</span>
             </div>
 
