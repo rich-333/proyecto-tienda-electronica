@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
 using tienda_electronica.Models;
+using tienda_electronica.Models.Categorias;
 using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
@@ -14,9 +15,24 @@ namespace tienda_electronica.Controllers
             productoData = new ProductoData(config);
             categoriaData = new CategoriaData(config);
         }
-        public IActionResult Index()
+        public IActionResult Index(int? categoriaId)
         {
-            var productos = productoData.ObtenerProductos();
+            List<Producto> productos;
+
+            if (categoriaId.HasValue)
+            {
+                productos = productoData.ObtenerPorCategoria(categoriaId.Value);
+            }
+            else
+            {
+                productos = productoData.ObtenerProductos();
+            }
+            var categorias = categoriaData.ObtenerCategorias();
+            ViewBag.Categorias = categorias;
+
+            /*var productos = (categoriaId == null)
+                ? productoData.ObtenerProductos()
+                : productoData.ObtenerPorCategoria(categoriaId.Value);*/
             return View(productos);
         }
         public IActionResult Detalle(int id)

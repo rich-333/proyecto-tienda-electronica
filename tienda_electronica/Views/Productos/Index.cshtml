@@ -10,14 +10,22 @@
 
 <main class="products">
     <div class="container__title">
-        <h1 class="products__title">Productos</h1>
+        <h1 class="products__title">
+            <a class="products__title--decoration" href="@Url.Action("Index", "Productos")">Productos</a>
+        </h1>
     </div>
     <div class="container__category">
         <details class="dropdown">
             <summary>Categoria</summary>
             <ul>
-                <li><a href="#">Mandos</a></li>
-                <li><a href="#">Laptops</a></li>
+                @foreach (var categoria in ViewBag.Categorias)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "Productos", new { categoriaId = categoria.idCategoria })">
+                            @categoria.nombre
+                        </a>
+                    </li>
+                }
             </ul>
         </details>
     </div>

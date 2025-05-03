@@ -295,5 +295,42 @@ namespace tienda_electronica.Data
                 }
             }
         }
+
+        public List<Producto> ObtenerPorCategoria(int idCategoria)
+        {
+            List<Producto> productos = new List<Producto>();
+
+            using (var connection = _conexion.ObtenerConexion())
+            {
+                connection.Open();
+
+                var queryObtenerPorCategoria = "SELECT * FROM productos WHERE id_categoria = @idCategoria";
+
+                using (var cmd = new MySqlCommand(queryObtenerPorCategoria, connection))
+                {
+                    cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            productos.Add(new Producto
+                            {
+                                idProducto = reader["id_producto"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_producto"]),
+                                idCategoria = reader["id_categoria"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id_categoria"]),
+                                nombre = reader["nombre"] == DBNull.Value ? "" : reader["nombre"].ToString(),
+                                descripcion = reader["descripcion"] == DBNull.Value ? "" : reader["descripcion"].ToString(),
+                                precio = reader["precio"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio"]),
+                                stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
+                                precioDescuento = reader["precio_descuento"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio_descuento"]),
+                                estado = reader["activo"] == DBNull.Value ? false : Convert.ToBoolean(reader["activo"])
+                            });
+                        }
+                    }
+                }
+            }
+
+            return productos;
+        }
     }
 }

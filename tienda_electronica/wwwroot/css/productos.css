@@ -9,6 +9,13 @@
 .products__title {
     font-weight: 800;
     letter-spacing: 2.5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.products__title--decoration {
+    text-decoration: none;
+    color: #000;
 }
 
 /* Seccion categorias */
