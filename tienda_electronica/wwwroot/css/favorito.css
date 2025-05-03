@@ -1,0 +1,49 @@
+﻿.favorite {
+    padding: 30px 90px;
+}
+
+.container__title {
+    margin-bottom: 25px;
+}
+
+.favorite__title {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.favorite__table {
+    text-align: center;
+    width: 100%;
+    border-collapse: separate;
+    letter-spacing: 1px;
+    border-spacing: 0 15px;
+}
+
+thead th {
+    font-weight: 500;
+}
+
+.table__header, table tbody {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+table thead th, table td {
+    padding: 25px;
+}
+
+.product__img {
+    width: 40px;
+    height: 40px;
+}
+
+.icon__img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.icon__eye {
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}

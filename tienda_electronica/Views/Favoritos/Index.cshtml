@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Favoritos";
+    Layout = "_Layout";
+}
+
+@section Estilos {
+    <link href="~/css/favorito.css" rel="stylesheet" />
+}
+
+<main class="favorite">
+    <div class="container__title">
+        <h1 class="favorite__title">Favoritos</h1>
+    </div>
+
+    <table class="favorite__table">
+        <thead class="table__header">
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>fecha_agregado</th>
+                <th>Ver</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <img class="product__img" src="~/img/Home/productos/mando.jpg" />
+                </td>
+                <td>220</td>
+                <td>2/3/2025</td>
+                <td>
+                    <a>
+                        <img class="icon__eye" src="~/img/home/productos/ver.png" />
+                    </a>
+                </td>
+                <td>
+                    <a>
+                        <img class="icon__img" src="~/img/carrito/delete_cart.png" />
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>

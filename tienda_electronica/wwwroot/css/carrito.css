@@ -14,8 +14,9 @@
 .cart__table {
     text-align: center;
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
     letter-spacing: 1px;
+    border-spacing: 0 15px;
 }
 
 thead th  {
@@ -23,7 +24,7 @@ thead th  {
 }
 
 .table__header, table tbody {
-    box-shadow: 5px 5px 5px #efefef;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 table thead th, table td {
