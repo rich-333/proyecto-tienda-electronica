@@ -49,6 +49,13 @@
     font-weight: 400; 
 }
 
+.price__disscount {
+    font-size: 20px;
+    font-weight: 400;
+    color: #d53d2d;
+    margin-top: 5px;
+}
+
 .description__product {
     margin: 20px 0;
     line-height: 25px;
@@ -104,7 +111,7 @@
 }
 
 .counter__btn--add:hover {
-    background-color: #f38276;
+    background-color: #d53d2d;
     color: #000;
 }
 
@@ -119,7 +126,7 @@
 }
 
 .buy__btn:hover {
-    background-color: #f38276;
+    background-color: #d53d2d;
 }
 
 .favorite__btn {

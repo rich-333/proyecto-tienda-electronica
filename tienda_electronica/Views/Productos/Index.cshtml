@@ -38,7 +38,7 @@
                     <button class="button__favorite">
                         <img class="icon__product" src="~/img/nav/favorito.png" />
                     </button>
-                    <a href="#" class="button__eye">
+                    <a href="@Url.Action("Detalle", "Productos", new { id = producto.idProducto } )" class="button__eye">
                         <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
                     </a>
                 </div>

@@ -37,10 +37,13 @@ namespace tienda_electronica.Controllers
         }
         public IActionResult Detalle(int id)
         {
-            // Aquí podrías traer el producto desde una base de datos
-            // Por ahora solo pasamos el ID a la vista como ejemplo
-            ViewBag.ProductoId = id;
-            return View();
+            var producto = productoData.ObtenerProductoPorId(id);
+            if (producto == null) 
+            {
+                return NotFound();
+            }
+            //ViewBag.ProductoId = id;
+            return View(producto);
         }
         public IActionResult Gestion()
         {

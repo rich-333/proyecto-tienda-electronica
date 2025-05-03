@@ -168,7 +168,7 @@ namespace tienda_electronica.Data
             }
         }
 
-        public Producto ObtenerProductoPorId(int idProducto)
+        /*public Producto ObtenerProductoPorId(int idProducto)
         {
             Producto producto = null;
 
@@ -209,7 +209,72 @@ namespace tienda_electronica.Data
             }
 
             return producto;
+        }*/
+
+        public Producto ObtenerProductoPorId(int idProducto)
+        {
+            Producto producto = null;
+
+            using (var conn = _conexion.ObtenerConexion())
+            {
+                conn.Open();
+
+                var queryProducto = @"SELECT * FROM productos WHERE id_producto = @idProducto";
+
+                using (var cmd = new MySqlCommand(queryProducto, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            producto = new Producto
+                            {
+                                idProducto = Convert.ToInt32(reader["id_producto"]),
+                                idCategoria = Convert.ToInt32(reader["id_categoria"]),
+                                nombre = reader["nombre"].ToString(),
+                                descripcion = reader["descripcion"].ToString(),
+                                precio = Convert.ToDecimal(reader["precio"]),
+                                stock = Convert.ToInt32(reader["stock"]),
+                                precioDescuento = Convert.ToDecimal(reader["precio_descuento"]),
+                                estado = Convert.ToBoolean(reader["activo"]),
+                                //rutaImagen = reader["rutaImagen"].ToString(),
+                                ImagenesExtras = new List<string>()
+                            };
+                        }
+                    }
+                }
+
+                // Obtener las imágenes del producto
+                if (producto != null)
+                {
+                    var queryImagenes = @"SELECT ruta_imagen FROM imagenes_producto WHERE id_producto = @idProducto";
+
+                    using (var cmdImg = new MySqlCommand(queryImagenes, conn))
+                    {
+                        cmdImg.Parameters.AddWithValue("@idProducto", idProducto);
+
+                        using (var readerImg = cmdImg.ExecuteReader())
+                        {
+                            while (readerImg.Read())
+                            {
+                                producto.ImagenesExtras.Add(readerImg["ruta_imagen"].ToString());
+                            }
+                        }
+                    }
+
+                    // Si hay al menos una imagen, usar la primera como principal
+                    if (producto.ImagenesExtras.Any())
+                    {
+                        producto.rutaImagen = producto.ImagenesExtras[0];
+                    }
+                }
+            }
+
+            return producto;
         }
+
 
         public void EditarProducto(Producto producto, IFormFile imagenPrincipal, List<IFormFile> imagenesAdicionales)
         {
