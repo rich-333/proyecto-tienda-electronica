@@ -14,23 +14,23 @@
     <header class="header">
         <h1 class="logo">Hyper Mega Red</h1>
         <nav class="nav">
-            <a class="nav__link">Inicio</a>
-            <a class="nav__link">Contacto</a>
-            <a class="nav__link">Acerca de nosotros</a>
-            <a class="nav__link">Registrarse</a>
+            <a href="@Url.Action("Index", "Home")" class="nav__link">Inicio</a>
+            <a href="#" class="nav__link">Contacto</a>
+            <a href="#" class="nav__link">Acerca de nosotros</a>
+            <a href="@Url.Action("Login", "Cuenta")" class="nav__link">Registrarse</a>
         </nav>
         <div class="input__container">
             <input class="input__search" type="text" placeholder="Que estas buscando?" />
             <img aria-hidden="true" class="input__lens" src="~/img/nav/lupa.png" />
         </div>
         <div>
-            <a>
+            <a class="link__icon" href="@Url.Action("Index", "Favoritos")">
                 <img class="header__icon" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
             </a>
-            <a>
+            <a class="link__icon" href="@Url.Action("Index", "Carritos")">
                 <img class="header__icon" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
             </a>
-            <a>
+            <a class="link__icon">
                 <img class="header__icon" src="~/img/nav/usuario.png" alt="Imagen de un perfil para revisar el perfil del usuario"/>
             </a>
         </div>

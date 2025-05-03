@@ -30,6 +30,7 @@ body {
     padding: 35px 90px 10px;
     border-bottom: 1px solid #ddd;
     position: sticky;
+    top: 0;
 }
 
 .logo {
@@ -40,8 +41,16 @@ body {
 
 .nav__link {
     margin: 0 15px;
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--font-size-small);
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.nav__link:hover {
+    color: #454545;
 }
 
 .input__container {
@@ -67,6 +76,10 @@ body {
     height: 18px;
     object-fit: contain;
     pointer-events: none;
+}
+
+.link__icon {
+    text-decoration: none;
 }
 
 .header__icon {

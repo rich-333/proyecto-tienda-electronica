@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Sing Up";
+    Layout = "_Layout";
+}
+
+@section Estilos {
+    <link href="~/css/login.css" rel="stylesheet" />
+}
+
+<main class="login">
+    <div>
+        <img class="login__img" src="~/img/login/login.jpg" />
+    </div>
+    <div class="login__data">
+        <h1 class="login__title">Registrarse</h1>
+        <span class="login__text">Ingrese sus datos a continuacion</span>
+        <input class="login__input" type="email" required placeholder="Email"/>
+        <input class="login__input" type="password" required placeholder="Password"/>
+        <button class="login__button">Iniciar Sesion</button>
+    </div>
+</main>
