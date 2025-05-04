@@ -1,10 +1,20 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Carrito.Carrito>
+
+@{
     ViewData["Title"] = "Carrito";
     Layout = "_Layout";
 }
 
 @section Estilos {
-    <link href="~/css/carrito.css" rel="stylesheet" />
+<link href="~/css/carrito.css" rel="stylesheet" />
+}
+
+@{
+    decimal total = 0;
+    foreach(var item in Model)
+    {
+        total += item.precio * item.cantidad;
+    }
 }
 
 <main class="cart">
@@ -13,10 +23,11 @@
     </div>
 
     <table class="cart__table">
-        
+
         <thead class="table__header">
             <tr>
                 <th>Producto</th>
+                <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
@@ -25,19 +36,23 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>
-                    <img class="product__img" src="~/img/Home/productos/mando.jpg"/>
-                </td>
-                <td>220</td>
-                <td>3</td>
-                <td>680</td>
-                <td>
-                    <a>
-                        <img class="icon__img" src="~/img/carrito/delete_cart.png" />
-                    </a>
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img class="product__img" src="@item.imagenUrl" />
+                    </td>
+                    <td>@item.nombreProducto</td>
+                    <td>@item.precio</td>
+                    <td>@item.cantidad</td>
+                    <td>@(item.cantidad * item.precio) Bs</td>
+                    <td>
+                        <a asp-action="Eliminar" asp-route-id="@item.idCarrito">
+                            <img class="icon__img" src="~/img/carrito/delete_cart.png" />
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
 
     </table>
@@ -48,11 +63,15 @@
                 <span class="title__pay">Total de Carrito</span>
                 <div class="pay">
                     <span>Subtotal:</span>
-                    <span>1750 Bs.</span>
+                    <span>@total Bs.</span>
+                </div>
+                <div class="pay">
+                    <span>Entrega:</span>
+                    <span>Gratuita</span>
                 </div>
                 <div class="pay">
                     <span>Total:</span>
-                    <span>1750 Bs.</span>
+                    <span>@total Bs.</span>
                 </div>
                 <div class="container__buttom">
                     <a class="link__pay">Proceso de pago</a>

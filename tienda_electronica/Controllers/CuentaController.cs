@@ -36,6 +36,7 @@ namespace tienda_electronica.Controllers
             if (cliente != null) 
             {
                 HttpContext.Session.SetString("ClienteLogueado", cliente.email);
+                HttpContext.Session.SetInt32("idCliente", cliente.idCliente);
                 return RedirectToAction("Index", "Home");
             }
 

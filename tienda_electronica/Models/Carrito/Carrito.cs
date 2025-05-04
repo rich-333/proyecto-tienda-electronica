@@ -10,6 +10,10 @@ namespace tienda_electronica.Models.Carrito
         public int cantidad { get; set; }
         public DateTime fechaAgregado { get; set; }
 
+        public string nombreProducto { get; set; }
+        public decimal precio { get; set; }
+        public string imagenUrl { get; set; }
+
         public void AgregarProducto(Producto producto, int cantidad)
         {
 
