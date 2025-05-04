@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Sing Up";
+    ViewData["Title"] = "Iniciar Sesion";
     Layout = "_Layout";
 }
 
@@ -12,10 +12,17 @@
         <img class="login__img" src="~/img/login/login.jpg" />
     </div>
     <div class="login__data">
-        <h1 class="login__title">Registrarse</h1>
+        <h1 class="login__title">Iniciar Sesion</h1>
         <span class="login__text">Ingrese sus datos a continuacion</span>
-        <input class="login__input" type="email" required placeholder="Email"/>
-        <input class="login__input" type="password" required placeholder="Password"/>
-        <button class="login__button">Iniciar Sesion</button>
+        <form class="login__form" asp-controller="Cuenta" asp-action="Login" method="post">
+            <input class="login__input" name="email" type="email" required placeholder="Email" />
+            <input class="login__input" name="contrasena" type="password" required placeholder="Password" />
+            <button type="submit" class="login__button">Iniciar Sesion</button>
+        </form>
+
+        @if (TempData["Error"] != null)
+        {
+            <p class="login__error">@TempData["Error"]</p>
+        }
     </div>
 </main>
