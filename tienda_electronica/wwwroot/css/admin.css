@@ -45,6 +45,7 @@ body {
     min-height: 97vh;
     border-radius: 1rem;
     padding: 30px;
+    justify-content: space-between;
 }
 
 .menu__logo {
@@ -91,9 +92,8 @@ body {
 }
 
 .menu__signout {
-    display: flex;
-    align-items: center;
-    margin: 280px 0 0 0;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .btn__signout {

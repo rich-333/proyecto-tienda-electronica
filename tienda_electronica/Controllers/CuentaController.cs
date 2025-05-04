@@ -48,5 +48,12 @@ namespace tienda_electronica.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Cuenta");
+        }
     }
 }

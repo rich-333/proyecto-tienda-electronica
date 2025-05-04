@@ -70,10 +70,12 @@
             </nav>
 
             <div class="menu__signout">
-                <button class="btn__signout" type="submit">
-                    <img class="menu__img" src="~/img/layoutadmin/logout.png" />
-                    Cerrar Sesion
-                </button>
+                <form method="post" action="@Url.Action("Logout", "Cuenta")">
+                    <button class="btn__signout" type="submit">
+                        <img class="menu__img" src="~/img/layoutadmin/logout.png" />
+                        Cerrar Sesion
+                    </button>
+                </form>
             </div>
         </div>
     </div>
