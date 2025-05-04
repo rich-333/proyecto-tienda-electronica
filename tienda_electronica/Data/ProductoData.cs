@@ -237,7 +237,7 @@ namespace tienda_electronica.Data
                                 descripcion = reader["descripcion"].ToString(),
                                 precio = Convert.ToDecimal(reader["precio"]),
                                 stock = Convert.ToInt32(reader["stock"]),
-                                precioDescuento = Convert.ToDecimal(reader["precio_descuento"]),
+                                precioDescuento = reader["precio_descuento"] != DBNull.Value ? Convert.ToDecimal(reader["precio_descuento"]) : 0,
                                 estado = Convert.ToBoolean(reader["activo"]),
                                 //rutaImagen = reader["rutaImagen"].ToString(),
                                 ImagenesExtras = new List<string>()

@@ -12,6 +12,7 @@ namespace tienda_electronica.Models.Carrito
 
         public string nombreProducto { get; set; }
         public decimal precio { get; set; }
+        public decimal? precioDescuento { get; set; }
         public string imagenUrl { get; set; }
 
         public void AgregarProducto(Producto producto, int cantidad)

@@ -13,7 +13,8 @@
     decimal total = 0;
     foreach(var item in Model)
     {
-        total += item.precio * item.cantidad;
+        var precioUnitario = item.precioDescuento.HasValue && item.precioDescuento > 0 ? item.precioDescuento.Value : item.precio;
+        total += precioUnitario * item.cantidad;
     }
 }
 
@@ -43,9 +44,31 @@
                         <img class="product__img" src="@item.imagenUrl" />
                     </td>
                     <td>@item.nombreProducto</td>
-                    <td>@item.precio</td>
+                    <td>
+                        @if (item.precioDescuento.HasValue && item.precioDescuento > 0)
+                        {
+                            <span class="price">@item.precio Bs</span>
+
+                            <br />
+                            <span class="price__disscount">@item.precioDescuento Bs</span>
+                        }
+                        else
+                        {
+                            <span>@item.precio Bs</span>
+                        }
+                    </td>
                     <td>@item.cantidad</td>
-                    <td>@(item.cantidad * item.precio) Bs</td>
+                    <td>
+                        @if (item.precioDescuento.HasValue && item.precioDescuento > 0)
+                        {
+                            @(item.cantidad * item.precioDescuento)
+                        }
+                        else
+                        {
+                            @(item.cantidad * item.precio)
+                        }
+                        Bs
+                    </td>
                     <td>
                         <a asp-action="Eliminar" asp-route-id="@item.idCarrito">
                             <img class="icon__img" src="~/img/carrito/delete_cart.png" />

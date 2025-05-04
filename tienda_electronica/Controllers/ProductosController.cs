@@ -7,7 +7,7 @@ using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
 {
-    [AuthorizeRol("Administrador", "Gestor Productos")]
+    /*[AuthorizeRol("Administrador", "Gestor Productos")]*/
     public class ProductosController : Controller
     {
         private readonly ProductoData productoData;

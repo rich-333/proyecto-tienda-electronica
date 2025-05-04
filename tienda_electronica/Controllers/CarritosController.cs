@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
+using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
 {
@@ -21,6 +22,17 @@ namespace tienda_electronica.Controllers
 
             var productos = carritoData.ObtenerCarritoPorCliente(idCliente.Value);
             return View(productos);
+        }
+
+        [HttpPost]
+        public IActionResult AgregarAlCarrito(int idProducto, int cantidad)
+        {
+            int? idCliente = HttpContext.Session.GetInt32("idCliente");
+            if (idCliente == null)
+                return RedirectToAction("Login", "Cuenta");
+
+            carritoData.AgregarProductoAlCarrito(idCliente.Value, idProducto, cantidad);
+            return RedirectToAction("Index", "Carritos");
         }
 
         public IActionResult Eliminar(int id) 
