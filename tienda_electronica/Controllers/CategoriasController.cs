@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
+using tienda_electronica.Filters;
 using tienda_electronica.Models.Categorias;
 
 namespace tienda_electronica.Controllers
 {
+    [AuthorizeRol("Administrador", "Gestor Productos")]
     public class CategoriasController : Controller
     {
         public readonly CategoriaData categoriaData;

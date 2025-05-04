@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
+using tienda_electronica.Filters;
 using tienda_electronica.Models.Usuarios;
 
 namespace tienda_electronica.Controllers
 {
+    [AuthorizeRol("Administrador")]
     public class ClientesController : Controller
     {
         private readonly ClienteData clienteData;

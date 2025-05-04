@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var clienteLogueado = Context.Session.GetString("ClienteLogueado");
+    bool estaLogueado = !string.IsNullOrEmpty(clienteLogueado);
+}
+
+<!DOCTYPE html>
 
 <html lang="es">
 <head>
@@ -24,15 +29,18 @@
             <img aria-hidden="true" class="input__lens" src="~/img/nav/lupa.png" />
         </div>
         <div>
-            <a class="link__icon" href="@Url.Action("Index", "Favoritos")">
-                <img class="header__icon" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
-            </a>
-            <a class="link__icon" href="@Url.Action("Index", "Carritos")">
-                <img class="header__icon" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
-            </a>
-            <a class="link__icon">
-                <img class="header__icon" src="~/img/nav/usuario.png" alt="Imagen de un perfil para revisar el perfil del usuario"/>
-            </a>
+            @if (estaLogueado)
+            {
+                <a class="link__icon" href="@Url.Action("Index", "Favoritos")">
+                    <img class="header__icon" src="~/img/nav/favorito.png" alt="Imagen de un corazon para agregar a favoritos" />
+                </a>
+                <a class="link__icon" href="@Url.Action("Index", "Carritos")">
+                    <img class="header__icon" src="~/img/nav/carro-de-la-compra.png" alt="Imagen de un carrito de compras para agregar productos" />
+                </a>
+                <a class="link__icon">
+                    <img class="header__icon" src="~/img/nav/usuario.png" alt="Imagen de un perfil para revisar el perfil del usuario" />
+                </a>
+            }
         </div>
     </header>
 

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using tienda_electronica.Data;
+using tienda_electronica.Filters;
 using tienda_electronica.Models;
 using tienda_electronica.Models.Categorias;
 using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
 {
+    [AuthorizeRol("Administrador", "Gestor Productos")]
     public class ProductosController : Controller
     {
         private readonly ProductoData productoData;

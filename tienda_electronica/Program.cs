@@ -4,6 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<Conexion>();
+builder.Services.AddTransient<ProductoData>();
+
+/* Login */
+builder.Services.AddSession();
+
 
 var app = builder.Build();
 
@@ -18,6 +24,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession();
+
 app.UseRouting();
 
 app.UseAuthorization();
@@ -27,8 +35,4 @@ app.MapControllerRoute(
     pattern: "{controller=Cuenta}/{action=Login}/{id?}");
 
 app.Run();
-
-builder.Services.AddSingleton<Conexion>();
-
-builder.Services.AddTransient<ProductoData>();
 
