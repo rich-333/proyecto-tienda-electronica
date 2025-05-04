@@ -1,10 +1,12 @@
-﻿@{
+﻿@model List<tienda_electronica.Models.Productos.Producto> 
+
+@{
     /*ViewData["Title"] = "Home Page";*/
     Layout = "_Layout";
 }
 
 @section Estilos {
-    <link rel="stylesheet" href="~/css/inicio.css" />
+<link rel="stylesheet" href="~/css/inicio.css" />
 }
 
 <main class="content">
@@ -40,21 +42,30 @@
             </div>
         </div>
         <div class="article__container">
-            <article class="product__container">
-                <div class="img__container">
-                    <img class="img__product" src="~/img/home/productos/mando.jpg" />
-                    <button class="button__favorite">
-                        <img class="icon__product" src="~/img/nav/favorito.png" />
-                    </button>
-                    <a href="#" class="button__eye">
-                        <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
-                    </a>
-                </div>
-                <header class="product__header">
-                    <h3 class="product__name">Mando</h3>
-                    <span>220 Bs.</span>
-                </header>
-            </article>
+            @foreach (var producto in Model)
+            {
+                <article class="product__container">
+                    <div class="img__container">
+                        <img class="img__product" src="~/@producto.rutaImagen" />
+                        <button class="button__favorite">
+                            <img class="icon__product" src="~/img/nav/favorito.png" />
+                        </button>
+                        <a href="@Url.Action("Detalle", "Productos" , new { id = producto.idProducto } )" class="button__eye">
+                            <img class="icon__product" src="~/img/home/productos/ojo-abierto.png" />
+                        </a>
+                    </div>
+                    <header class="product__header">
+                        <h3 class="product__name">@producto.nombre</h3>
+                        <div class="container__price">
+                            <span>@producto.precio</span>
+                            @if (producto.precioDescuento > 0)
+                            {
+                                <span class="discount__price">@producto.precioDescuento</span>
+                            }
+                        </div>
+                    </header>
+                </article>
+            }
         </div>
         <div class="view__container">
             <a href="@Url.Action("Index", "Productos")" class="bottom__view">Ver todos los productos</a>
@@ -78,15 +89,18 @@
                 </button>
             </div>
         </div>
-        <div>
-            <article class="article__container">
-                <div class="category__container">
-                    <a class="category__content" href="#">
-                        <img class="img__category" src="~/img/home/categorias/telefono-inteligente.png" />
-                        <h3 class="name__category">Telefonos</h3>
-                    </a>
-                </div>
-            </article>
+        <div class="article__container">
+            @foreach (var categoria in ViewBag.Categorias)
+            {
+                <article class="article__container">
+                    <div class="category__container">
+                        <a class="category__content" href="#">
+                            <img class="img__category" src="~/img/home/categorias/telefono-inteligente.png" />
+                            <h3 class="name__category">@categoria.nombre</h3>
+                        </a>
+                    </div>
+                </article>
+            }
         </div>
         <hr class="section__divider" />
     </section>
@@ -125,3 +139,42 @@
         </div>
     </section>
 </main>
+
+@section Scripts {
+    <script>
+                document.addEventListener('DOMContentLoaded', function() {
+            const productContainer = document.querySelector('.article__container');
+            const leftArrow = document.querySelector('.button__arrow:first-child');
+            const rightArrow = document.querySelector('.button__arrow:last-child');
+
+            // Cantidad de píxeles a desplazar (ajusta según tu diseño)
+            const scrollAmount = 300;
+
+            // Flecha izquierda (desplaza hacia atrás)
+            leftArrow.addEventListener('click', function() {
+                productContainer.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Flecha derecha (desplaza hacia adelante)
+            rightArrow.addEventListener('click', function() {
+                productContainer.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Opcional: Mostrar/ocultar flechas según posición del scroll
+            function updateArrowVisibility() {
+                leftArrow.style.visibility = productContainer.scrollLeft > 0 ? 'visible' : 'hidden';
+                rightArrow.style.visibility = productContainer.scrollLeft <
+                    (productContainer.scrollWidth - productContainer.clientWidth) ? 'visible' : 'hidden';
+            }
+
+            productContainer.addEventListener('scroll', updateArrowVisibility);
+            updateArrowVisibility(); // Ejecutar al cargar la página
+        });
+    </script>
+}
