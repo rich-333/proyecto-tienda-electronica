@@ -16,7 +16,7 @@ namespace tienda_electronica.Controllers
             productoData = new ProductoData(config);
             categoriaData = new CategoriaData(config);
         }
-        public IActionResult Index(int? categoriaId)
+        public IActionResult Index(int? categoriaId, string busqueda)
         {
             List<Producto> productos;
 
@@ -28,13 +28,20 @@ namespace tienda_electronica.Controllers
             {
                 productos = productoData.ObtenerProductos();
             }
+
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                productos = productos
+                    .Where(p => p.nombre.Contains(busqueda, StringComparison.OrdinalIgnoreCase) || 
+                            p.descripcion.Contains(busqueda, StringComparison.OrdinalIgnoreCase))
+                    .ToList();      
+            }
+
             var categorias = categoriaData.ObtenerCategorias();
             ViewBag.Categorias = categorias;
             ViewBag.CategoriaSeleccionadaId = categoriaId;
+            ViewBag.BusquedaActual = busqueda;
 
-            /*var productos = (categoriaId == null)
-                ? productoData.ObtenerProductos()
-                : productoData.ObtenerPorCategoria(categoriaId.Value);*/
             return View(productos);
         }
         public IActionResult Detalle(int id)
@@ -92,9 +99,6 @@ namespace tienda_electronica.Controllers
         {
             try
             {
-                /*int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
-                TempData["MensajeAgregar"] = "Producto agregado correctamente.";
-                return RedirectToAction("Gestion");*/
                 if (producto.idProducto == 0)
                 {
                     int idProducto = productoData.AgregarProducto(producto, imagenPrincipal, imagenesAdicionales);
