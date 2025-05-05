@@ -24,6 +24,13 @@
                 <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>
         }
+        @if (TempData["MensajeAgregar"] != null)
+        {
+            <div class="custom-alert show">
+                @TempData["MensajeAgregar"]
+                <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+        }
 
     <div class="header__management">
         <a class="add" href="@Url.Action("Agregar", "Usuarios")">

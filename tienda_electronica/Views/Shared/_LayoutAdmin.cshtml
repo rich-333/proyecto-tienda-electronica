@@ -1,5 +1,7 @@
 ﻿@{
     var rolUsuario = Context.Session.GetString("RolUsuario");
+    var nombreUsuario = Context.Session.GetString("NombreUsuario");
+    var apellidoUsuario = Context.Session.GetString("ApellidoUsuario");
 }
 <!DOCTYPE html>
 
@@ -88,7 +90,10 @@
                 {
                     <span class="header__container--title">@ViewBag.TituloMenu</span>
                 }
-                <span class="header__container--welcome">hello user</span>
+                <div class="header__fullname">
+                    <span class="header__name">@nombreUsuario</span>
+                    <span class="header__lastname">@apellidoUsuario</span>
+                </div>
             </div>
 
         </div>

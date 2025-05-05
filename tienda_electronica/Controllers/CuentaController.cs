@@ -22,6 +22,8 @@ namespace tienda_electronica.Controllers
             if (usuario != null) 
             {
                 HttpContext.Session.SetString("RolUsuario", usuario.rol);
+                HttpContext.Session.SetString("NombreUsuario", usuario.nombre);
+                HttpContext.Session.SetString("ApellidoUsuario", usuario.apellido);
                 switch (usuario.rol) 
                 {
                     case "Administrador":

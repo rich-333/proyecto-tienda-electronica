@@ -48,7 +48,7 @@ namespace tienda_electronica.Controllers
             return View(producto);
         }
 
-        /*[AuthorizeRol("Administrador", "Gestor Productos")]*/
+        [AuthorizeRol("Administrador", "Gestor Productos")]
         public IActionResult Gestion()
         {
             ViewBag.TituloMenu = "Gestion de Productos";

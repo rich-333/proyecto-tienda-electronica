@@ -137,10 +137,10 @@ body {
     font-weight: 700;
 }
 
-.header__container--welcome {
+.header__fullname {
+    display: flex;
     padding-top: 10px;
-    display: block;
-    width: 100px;
+    gap: 5px;
 }
 
 .main {

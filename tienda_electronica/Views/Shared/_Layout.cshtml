@@ -22,7 +22,10 @@
             <a href="@Url.Action("Index", "Home")" class="nav__link">Inicio</a>
             <a href="#" class="nav__link">Contacto</a>
             <a href="#" class="nav__link">Acerca de nosotros</a>
-            <a href="@Url.Action("Login", "Cuenta")" class="nav__link">Iniciar Sesion</a>
+            @if (!estaLogueado)
+            {
+                <a href="@Url.Action("Login", "Cuenta")" class="nav__link">Iniciar Sesion</a>
+            }
         </nav>
         <div class="input__container">
             <input class="input__search" type="text" placeholder="Que estas buscando?" />
