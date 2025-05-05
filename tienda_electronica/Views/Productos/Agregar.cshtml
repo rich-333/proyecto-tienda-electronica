@@ -6,39 +6,39 @@
 }
 
 @section Estilos{
-    <link href="~/css/agregarProducto.css" rel="stylesheet" />
+<link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
 @section Scripts {
-    <script>
-        const btnPublicado = document.getElementById('btnPublicado');
-        const btnNoPublicado = document.getElementById('btnNoPublicado');
-        const inputActivo = document.getElementById('estado');
+<script>
+    const btnPublicado = document.getElementById('btnPublicado');
+    const btnNoPublicado = document.getElementById('btnNoPublicado');
+    const inputActivo = document.getElementById('estado');
 
-        btnPublicado.addEventListener('click', function () {
-        inputActivo.value = "true";
-        btnPublicado.classList.add('active');
-        btnNoPublicado.classList.remove('active');
-        });
+    btnPublicado.addEventListener('click', function () {
+    inputActivo.value = "true";
+    btnPublicado.classList.add('active');
+    btnNoPublicado.classList.remove('active');
+    });
 
-        btnNoPublicado.addEventListener('click', function () {
-        inputActivo.value = "false";
-        btnNoPublicado.classList.add('active');
-        btnPublicado.classList.remove('active');
-        });
-    </script>
-    <script>
-        const form = document.querySelector('form');
-        const imagenPrincipalInput = document.getElementById('imagenPrincipal');
+    btnNoPublicado.addEventListener('click', function () {
+    inputActivo.value = "false";
+    btnNoPublicado.classList.add('active');
+    btnPublicado.classList.remove('active');
+    });
+</script>
+<script>
+    const form = document.querySelector('form');
+    const imagenPrincipalInput = document.getElementById('imagenPrincipal');
 
-        form.addEventListener('submit', function (e) {
-        if (imagenPrincipalInput.files.length === 0) {
-        e.preventDefault();
-        alert('Por favor, sube una imagen principal.');
-        }
-        });
-    </script>
-    <script>
+    form.addEventListener('submit', function (e) {
+    if (imagenPrincipalInput.files.length === 0) {
+    e.preventDefault();
+    alert('Por favor, sube una imagen principal.');
+    }
+    });
+</script>
+<script>
         function previewImagenPrincipal(event) {
             const input = event.target;
             const preview = document.getElementById('previewImagenPrincipal');
@@ -52,14 +52,18 @@
                 }
 
                 reader.readAsDataURL(input.files[0]);
+
+                const spanTexto = input.previousElementSibling;
+                if (spanTexto && spanTexto.classList.contains('upload__span')) {
+                    spanTexto.style.display = 'none';
+                }
             }
         }
-    </script>
-    <script>
+</script>
+<script>
         function previewImagenesAdicionales(event) {
             const input = event.target;
-            const previewContainer = document.getElementById('previewImagenesAdicionales');
-            previewContainer.innerHTML = "";
+            const previewContainer = document.getElementById('previewImagenesAdicionales'); 
 
             if (input.files) {
                 Array.from(input.files).forEach(file => {
@@ -76,9 +80,14 @@
 
                     reader.readAsDataURL(file);
                 });
+
+                const spanTexto = input.previousElementSibling;
+                if (spanTexto && spanTexto.classList.contains('upload__span')) {
+                    spanTexto.style.display = 'none';
+                }
             }
         }
-    </script>
+</script>
 
 }
 
@@ -140,7 +149,10 @@
             </div>
             <div class="additional__img">
                 <label class="additional__lbl" for="imagenesAdicionales">
-                    <span class="upload__span">Cargar imagenes adicionales (maximo 4, opcional)</span>
+                    @if (string.IsNullOrEmpty(Model.rutaImagen))
+                    {
+                        <span class="upload__span">Cargar imagenes adicionales (maximo 4, opcional)</span>
+                    }
                     <input id="imagenesAdicionales" asp-for="imagenesAdicionales" class="upload__input" type="file" multiple accept="image/*" onchange="previewImagenesAdicionales(event)" />
                     <div id="previewImagenesAdicionales" class="preview__additionalimg"></div>
                 </label>
@@ -149,9 +161,14 @@
         <section class="imgprice__product">
             <div class="upload__container">
                 <label class="upload__lbl" for="imagenPrincipal">
-                    <span class="upload__span">Cargar Imagen Principal</span>
+                    @if (string.IsNullOrEmpty(Model.rutaImagen))
+                    {
+                        <span class="upload__span">Cargar Imagen Principal</span>
+                    }
                     <input id="imagenPrincipal" class="upload__input" asp-for="imagenPrincipal" type="file" accept="image/*" onchange="previewImagenPrincipal(event)" />
-                    <img id="previewImagenPrincipal" class="preview__mainimg" />
+                    <img id="previewImagenPrincipal" class="preview__mainimg"
+                         src="@(string.IsNullOrEmpty(Model.rutaImagen) ? "" : Url.Content("~/img_productos/" + Model.rutaImagen))"
+                         style="display:@(string.IsNullOrEmpty(Model.rutaImagen) ? "none" : "block");" />
                 </label>
             </div>
             <label class="lbl" for="precio">Precio</label>

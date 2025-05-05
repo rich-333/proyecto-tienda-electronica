@@ -7,7 +7,6 @@ using tienda_electronica.Models.Productos;
 
 namespace tienda_electronica.Controllers
 {
-    /*[AuthorizeRol("Administrador", "Gestor Productos")]*/
     public class ProductosController : Controller
     {
         private readonly ProductoData productoData;
@@ -31,6 +30,7 @@ namespace tienda_electronica.Controllers
             }
             var categorias = categoriaData.ObtenerCategorias();
             ViewBag.Categorias = categorias;
+            ViewBag.CategoriaSeleccionadaId = categoriaId;
 
             /*var productos = (categoriaId == null)
                 ? productoData.ObtenerProductos()
@@ -47,6 +47,8 @@ namespace tienda_electronica.Controllers
             //ViewBag.ProductoId = id;
             return View(producto);
         }
+
+        /*[AuthorizeRol("Administrador", "Gestor Productos")]*/
         public IActionResult Gestion()
         {
             ViewBag.TituloMenu = "Gestion de Productos";
