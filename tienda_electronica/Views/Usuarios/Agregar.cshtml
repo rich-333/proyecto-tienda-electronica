@@ -11,20 +11,6 @@
 
 <form asp-action="Guardar" asp-controller="Usuarios" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="idUsuario"/>
-    @if (TempData["Error"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["Error"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
-    @if (TempData["MensajeAgregar"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["MensajeAgregar"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
     @if (Model.idUsuario == 0)
     {
         ViewData["Title"] = "Agregar Usuario";

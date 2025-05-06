@@ -11,22 +11,6 @@
 
 <form asp-action="Guardar" asp-controller="Categorias" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="idCategoria" />
-
-    @if (TempData["Error"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["Error"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
-    @if (TempData["MensajeAgregar"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["MensajeAgregar"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
-
     <main class="form__categoria">
         <section class="info__categoria">
             <div>

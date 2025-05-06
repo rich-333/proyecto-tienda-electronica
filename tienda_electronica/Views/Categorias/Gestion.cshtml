@@ -12,15 +12,22 @@
 <main>
     @if (TempData["Error"] != null)
     {
-        <div class="custom-alert show" id="miAlerta">
+        <div class="custom-alert show">
             @TempData["Error"]
             <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
     }
-    @if (TempData["MensajeEliminar"] != null)
+    @if (TempData["MensajeAgregar"] != null)
+    {
+        <div class="custom-alert show">
+            @TempData["MensajeAgregar"]
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    }
+    @if (TempData["Mensaje Eliminar"] != null)
     {
         <div class="custom-alert show" id="miAlerta">
-            @TempData["MensajeEliminar"]
+            @TempData["Mensaje Eliminar"]
             <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
     }

@@ -246,7 +246,6 @@ namespace tienda_electronica.Data
                     }
                 }
 
-                // Obtener las imágenes del producto
                 if (producto != null)
                 {
                     var queryImagenes = @"SELECT ruta_imagen FROM imagenes_producto WHERE id_producto = @idProducto";
@@ -264,7 +263,6 @@ namespace tienda_electronica.Data
                         }
                     }
 
-                    // Si hay al menos una imagen, usar la primera como principal
                     if (producto.ImagenesExtras.Any())
                     {
                         producto.rutaImagen = producto.ImagenesExtras[0];
@@ -369,7 +367,13 @@ namespace tienda_electronica.Data
             {
                 connection.Open();
 
-                var queryObtenerPorCategoria = "SELECT * FROM productos WHERE id_categoria = @idCategoria";
+                var queryObtenerPorCategoria = @"SELECT p.*, 
+                                 (SELECT ruta_imagen 
+                                  FROM imagenes_producto 
+                                  WHERE id_producto = p.id_producto 
+                                  LIMIT 1) AS rutaImagen
+                              FROM productos p 
+                              WHERE id_categoria = @idCategoria";
 
                 using (var cmd = new MySqlCommand(queryObtenerPorCategoria, connection))
                 {
@@ -377,7 +381,7 @@ namespace tienda_electronica.Data
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             productos.Add(new Producto
                             {
@@ -388,7 +392,9 @@ namespace tienda_electronica.Data
                                 precio = reader["precio"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio"]),
                                 stock = reader["stock"] == DBNull.Value ? 0 : Convert.ToInt32(reader["stock"]),
                                 precioDescuento = reader["precio_descuento"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["precio_descuento"]),
-                                estado = reader["activo"] == DBNull.Value ? false : Convert.ToBoolean(reader["activo"])
+                                estado = reader["activo"] == DBNull.Value ? false : Convert.ToBoolean(reader["activo"]),
+                                rutaImagen = reader["rutaImagen"] == DBNull.Value ? "" : reader["rutaImagen"].ToString(),
+
                             });
                         }
                     }

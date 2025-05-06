@@ -30,7 +30,7 @@ body {
     padding: 35px 90px 10px;
     border-bottom: 1px solid #ddd;
     position: sticky;
-    top: 0;
+    /*top: 0;*/
 }
 
 .logo {

@@ -9,104 +9,8 @@
 <link href="~/css/agregarProducto.css" rel="stylesheet" />
 }
 
-@section Scripts {
-<script>
-    const btnPublicado = document.getElementById('btnPublicado');
-    const btnNoPublicado = document.getElementById('btnNoPublicado');
-    const inputActivo = document.getElementById('estado');
-
-    btnPublicado.addEventListener('click', function () {
-    inputActivo.value = "true";
-    btnPublicado.classList.add('active');
-    btnNoPublicado.classList.remove('active');
-    });
-
-    btnNoPublicado.addEventListener('click', function () {
-    inputActivo.value = "false";
-    btnNoPublicado.classList.add('active');
-    btnPublicado.classList.remove('active');
-    });
-</script>
-<script>
-    const form = document.querySelector('form');
-    const imagenPrincipalInput = document.getElementById('imagenPrincipal');
-
-    form.addEventListener('submit', function (e) {
-    if (imagenPrincipalInput.files.length === 0) {
-    e.preventDefault();
-    alert('Por favor, sube una imagen principal.');
-    }
-    });
-</script>
-<script>
-        function previewImagenPrincipal(event) {
-            const input = event.target;
-            const preview = document.getElementById('previewImagenPrincipal');
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-                const spanTexto = input.previousElementSibling;
-                if (spanTexto && spanTexto.classList.contains('upload__span')) {
-                    spanTexto.style.display = 'none';
-                }
-            }
-        }
-</script>
-<script>
-        function previewImagenesAdicionales(event) {
-            const input = event.target;
-            const previewContainer = document.getElementById('previewImagenesAdicionales'); 
-
-            if (input.files) {
-                Array.from(input.files).forEach(file => {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.style.width = '100px';
-                        img.style.height = '100px';
-                        img.style.objectFit = 'cover';
-                        previewContainer.appendChild(img);
-                    }
-
-                    reader.readAsDataURL(file);
-                });
-
-                const spanTexto = input.previousElementSibling;
-                if (spanTexto && spanTexto.classList.contains('upload__span')) {
-                    spanTexto.style.display = 'none';
-                }
-            }
-        }
-</script>
-
-}
-
 <form asp-action="Guardar" asp-controller="Productos" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="idProducto" />
-    @if (TempData["Error"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["Error"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
-    @if (TempData["MensajeAgregar"] != null)
-    {
-        <div class="custom-alert show">
-            @TempData["MensajeAgregar"]
-            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>
-    }
     @if (Model.idProducto == 0)
     {
         ViewData["Title"] = "Agregar Producto";
@@ -191,3 +95,86 @@
         </div>
     </main>
 </form>
+
+@section Scripts {
+    <script>
+        const btnPublicado = document.getElementById('btnPublicado');
+        const btnNoPublicado = document.getElementById('btnNoPublicado');
+        const inputActivo = document.getElementById('estado');
+
+        btnPublicado.addEventListener('click', function () {
+        inputActivo.value = "true";
+        btnPublicado.classList.add('active');
+        btnNoPublicado.classList.remove('active');
+        });
+
+        btnNoPublicado.addEventListener('click', function () {
+        inputActivo.value = "false";
+        btnNoPublicado.classList.add('active');
+        btnPublicado.classList.remove('active');
+        });
+    </script>
+    <script>
+        const form = document.querySelector('form');
+        const imagenPrincipalInput = document.getElementById('imagenPrincipal');
+        const tieneImagenPrevia = '@Model.rutaImagen' !== '';
+
+        form.addEventListener('submit', function (e) {
+            if (!tieneImagenPrevia && imagenPrincipalInput.files.length === 0) {
+                e.preventDefault();
+                alert('Por favor, sube una imagen principal.');
+            }
+        });
+    </script>
+    <script>
+        function previewImagenPrincipal(event) {
+            const input = event.target;
+            const preview = document.getElementById('previewImagenPrincipal');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+                const spanTexto = input.previousElementSibling;
+                if (spanTexto && spanTexto.classList.contains('upload__span')) {
+                    spanTexto.style.display = 'none';
+                }
+            }
+        }
+    </script>
+    <script>
+        function previewImagenesAdicionales(event) {
+            const input = event.target;
+            const previewContainer = document.getElementById('previewImagenesAdicionales');
+
+            if (input.files) {
+                Array.from(input.files).forEach(file => {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.width = '100px';
+                        img.style.height = '100px';
+                        img.style.objectFit = 'cover';
+                        previewContainer.appendChild(img);
+                    }
+
+                    reader.readAsDataURL(file);
+                });
+
+                const spanTexto = input.previousElementSibling;
+                if (spanTexto && spanTexto.classList.contains('upload__span')) {
+                    spanTexto.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+}

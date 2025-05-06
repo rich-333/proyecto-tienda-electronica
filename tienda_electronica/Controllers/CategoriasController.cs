@@ -55,7 +55,7 @@ namespace tienda_electronica.Controllers
                 else
                 {
                     categoriaData.EditarCategoria(categoria);
-                    TempData["MensajeEditar"] = "Categoria editada correctamente.";
+                    TempData["MensajeAgregar"] = "Categoria editada correctamente.";
                 }
                 return RedirectToAction("Gestion");
             }
