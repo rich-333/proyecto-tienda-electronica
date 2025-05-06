@@ -36,6 +36,15 @@ table thead th, table td {
     height: 40px;
 }
 
+.price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.price__disscount {
+    color: red;
+}
+
 .icon__img {
     width: 20px;
     height: 20px;

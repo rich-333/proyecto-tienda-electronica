@@ -11,10 +11,13 @@ namespace tienda_electronica.Controllers
     {
         private readonly ProductoData productoData;
         private readonly CategoriaData categoriaData;
+        private readonly FavoritoData favoritoData;
+
         public ProductosController(IConfiguration config)
         {
             productoData = new ProductoData(config);
             categoriaData = new CategoriaData(config);
+            favoritoData = new FavoritoData(config);
         }
         public IActionResult Index(int? categoriaId, string busqueda)
         {
@@ -41,6 +44,17 @@ namespace tienda_electronica.Controllers
             ViewBag.Categorias = categorias;
             ViewBag.CategoriaSeleccionadaId = categoriaId;
             ViewBag.BusquedaActual = busqueda;
+
+            var idCliente = HttpContext.Session.GetInt32("idCliente");
+            var favoritosIds = new List<int>();
+            if (idCliente != null)
+            {
+                var favoritos = favoritoData.ObtenerFavoritosPorCliente(idCliente.Value);
+                favoritosIds = favoritos.Select(f => f.idProducto).ToList();
+            }
+
+            ViewBag.FavoritosIds = favoritosIds;
+
 
             return View(productos);
         }
