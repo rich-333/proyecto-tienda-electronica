@@ -32,7 +32,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Clientes}/{action=Actualizar}/{id?}");
+    pattern: "{controller=Clientes}/{action=ModificarInformacion}/{id?}");
 
 app.Run();
 

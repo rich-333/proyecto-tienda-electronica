@@ -6,7 +6,6 @@ using tienda_electronica.Models.Usuarios;
 
 namespace tienda_electronica.Controllers
 {
-    [AuthorizeRol("Administrador")]
     public class ClientesController : Controller
     {
         private readonly ClienteData clienteData;
@@ -15,6 +14,18 @@ namespace tienda_electronica.Controllers
         {
             clienteData = new ClienteData (config);
         }
+
+        public IActionResult ModificarInformacion()
+        {
+            var idCliente = HttpContext.Session.GetInt32("idCliente");
+
+            if (idCliente == null)
+                return RedirectToAction("Login", "Cuenta");
+
+            return View();
+        }
+
+        [AuthorizeRol("Administrador")]
         public IActionResult Gestion()
         {
             ViewBag.TituloMenu = "Gestion de Clientes";
