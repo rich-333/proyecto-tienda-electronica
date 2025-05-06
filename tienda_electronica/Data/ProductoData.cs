@@ -107,7 +107,7 @@ namespace tienda_electronica.Data
 
                         if (imagenesAdicionales != null && imagenesAdicionales.Count > 0)
                         {
-                            foreach (var imagen in imagenesAdicionales.Take(4))
+                            foreach (var imagen in imagenesAdicionales.Take(5))
                             {
                                 if (imagen != null && imagen.Length > 0)
                                 {
@@ -329,7 +329,7 @@ namespace tienda_electronica.Data
 
                             if (imagenesAdicionales != null && imagenesAdicionales.Count > 0)
                             {
-                                foreach (var imagen in imagenesAdicionales.Take(4))
+                                foreach (var imagen in imagenesAdicionales.Take(5))
                                 {
                                     if (imagen != null && imagen.Length > 0)
                                     {
