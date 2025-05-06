@@ -53,9 +53,22 @@ namespace tienda_electronica.Data
             {
                 connection.Open();
 
-                var query = @"INSERT INTO favoritos (id_cliente, id_producto, fecha_agregado) VALUES (@idCliente, @idProducto, NOW())";
+                var existeQuery = @"SELECT COUNT(*) FROM favoritos WHERE id_cliente = @idCliente AND id_producto = @idProducto";
+                using (var checkCmd = new MySqlCommand(existeQuery, connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@idCliente", idCliente);
+                    checkCmd.Parameters.AddWithValue("@idProducto", idProducto);
 
-                using (var cmd = new MySqlCommand (query, connection))
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        return;
+                    }
+                }
+
+                var insertQuery = @"INSERT INTO favoritos (id_cliente, id_producto, fecha_agregado) VALUES (@idCliente, @idProducto, NOW())";
+
+                using (var cmd = new MySqlCommand (insertQuery, connection))
                 {
                     cmd.Parameters.AddWithValue("@idCliente", idCliente);
                     cmd.Parameters.AddWithValue("@idProducto", idProducto);

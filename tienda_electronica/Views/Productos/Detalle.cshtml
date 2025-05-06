@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Detalle del Producto";
     Layout = "_Layout";
+    List<int> favoritosIds = ViewBag.FavoritosIds ?? new List<int>();
 }
 
 @section Estilos{
-<link href="~/css/detalle.css" rel="stylesheet" />
+    <link href="~/css/detalle.css" rel="stylesheet" />
 }
 
 <main class="detail">
@@ -38,9 +39,12 @@
                     <input type="hidden" id="inputCantidad" name="cantidad" value="1" />
                     <button type="submit" class="buy__btn">Agregar al carrito</button>
                 </form>
-                <button class="favorite__btn">
-                    <img class="img__favorite" src="~/img/nav/favorito.png" />
-                </button>
+                <form asp-controller="Favoritos" asp-action="Agregar" method="post">
+                    <input type="hidden" name="idProducto" value="@Model.idProducto" />
+                    <button type="submit" class="favorite__btn">
+                        <img class="img__favorite" src="~/img/nav/@(favoritosIds.Contains(Model.idProducto) ? "favorito-lleno.png" : "favorito.png")" />
+                    </button>
+                </form>
             </div>
             <div class="detail__service">
                 <div class="service">

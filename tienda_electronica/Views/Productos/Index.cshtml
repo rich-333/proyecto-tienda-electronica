@@ -38,7 +38,7 @@
                     <img class="img__product" src="@producto.rutaImagen" />
                     <form asp-controller="Favoritos" asp-action="Agregar" method="post">
                         <input type="hidden" name="idProducto" value="@producto.idProducto" />
-                        <button class="button__favorite">
+                        <button type="submit" class="button__favorite">
                             <img class="icon__product" src="~/img/nav/@(favoritosIds.Contains(producto.idProducto) ? "favorito-lleno.png" : "favorito.png")" />
                         </button>
                     </form>
